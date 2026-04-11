@@ -1,120 +1,576 @@
 {% extends 'base.html.twig' %}
+{% from 'partials/_icons.html.twig' import check, linkedin, twitter, star %}
 
-{% block title %}Alliance Esthetic — Implantologie Capillaire à Paris{% endblock %}
+{% block title %}ProService — Accueil{% endblock %}
 
 {% block body %}
-
-{# ===== HERO VIDEO ===== #}
-<section class="hero">
-    <div class="hero-media">
-        <video autoplay muted loop playsinline>
+    {# Hero Section #}
+    <section class="hero">
+        <video class="hero__video" autoplay muted loop playsinline>
             <source src="{{ asset('videos/hero.mp4') }}" type="video/mp4">
         </video>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content reveal">
-        <span class="hero-tag">Clinique d'excellence capillaire</span>
-        <h1>Retrouvez votre<br>confiance naturelle</h1>
-        <p>Techniques FUE &amp; DHI de précision. Résultats naturels, durables et sans cicatrices visibles à Paris.</p>
-        <div class="hero-ctas">
-            <a href="#contact" class="btn-primary">Prendre rendez-vous</a>
-            <a href="#services" class="btn-secondary">Découvrir nos services</a>
-        </div>
-    </div>
-    <div class="hero-scroll">
-        Défiler<span></span>
-    </div>
-</section>
-
-{# ===== STATS ===== #}
-<section class="stats">
-    <div class="stats-inner">
-        <div class="stat-item">
-            <span class="stat-number">500<span class="gold">+</span></span>
-            <span class="stat-label">Patients satisfaits</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">5 <span class="gold">ans</span></span>
-            <span class="stat-label">D'expertise capillaire</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">98<span class="gold">%</span></span>
-            <span class="stat-label">Taux de satisfaction</span>
-        </div>
-        <div class="stat-item">
-            <span class="stat-number">3</span>
-            <span class="stat-label">Techniques maîtrisées</span>
-        </div>
-    </div>
-</section>
-
-{# ===== SERVICES ===== #}
-<section class="services" id="services">
-    <div class="section-inner">
-        <div class="section-header reveal">
-            <span class="section-tag">Nos expertises</span>
-            <h2>Des solutions sur mesure<br>pour chaque profil</h2>
-        </div>
-        <div class="services-grid">
-            {% for service in services %}
-            <div class="service-card {{ service.featured ? 'featured' : '' }} reveal">
-                <div class="service-icon">
-                    {% if loop.index == 1 %}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-                        <path d="M12 8v8M8 12h8"/>
-                    </svg>
-                    {% elseif loop.index == 2 %}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
-                    </svg>
-                    {% else %}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                    </svg>
-                    {% endif %}
-                </div>
-                <h3>{{ service.title }}</h3>
-                <p>{{ service.description }}</p>
-                <a href="#" class="link-gold">En savoir plus →</a>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <h1 class="hero__title">Votre Partenaire de Confiance</h1>
+            <p class="hero__subtitle">Des solutions professionnelles sur mesure pour accélérer votre succès</p>
+            <div class="hero__actions">
+                <a href="#" class="btn btn--primary">Réserver maintenant</a>
+                <a href="#" class="btn btn--outline">Voir nos réalisations</a>
             </div>
-            {% endfor %}
         </div>
-    </div>
-</section>
+    </section>
 
-{# ===== TESTIMONIALS ===== #}
-<section class="testimonials">
-    <div class="section-inner">
-        <div class="section-header reveal">
-            <span class="section-tag">Témoignages</span>
-            <h2>Ce que disent nos patients</h2>
+    {# Section Ils nous font confiance #}
+    <section class="trust">
+        <div class="container">
+            <p class="trust__label">Ils nous font confiance</p>
         </div>
-        <div class="testimonials-grid">
-            {% for t in testimonials %}
-            <div class="testimonial-card reveal">
-                <div class="stars">
-                    {% for i in 1..t.rating %}★{% endfor %}
+        <div class="trust__slider">
+            <div class="trust__track">
+                {% for i in 1..2 %}
+                {# Orange #}
+                <div class="trust__item">
+                    <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="8" width="24" height="24" rx="4" fill="#FF7900"/>
+                        <text x="40" y="27" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#FF7900">Orange</text>
+                    </svg>
                 </div>
-                <p class="testimonial-text">« {{ t.text }} »</p>
-                <div class="testimonial-author">
-                    <span class="author-name">{{ t.name }}</span>
-                    <span class="author-detail">{{ t.procedure }} &middot; {{ t.date }}</span>
+                {# SNCF #}
+                <div class="trust__item">
+                    <svg viewBox="0 0 110 40" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="6" width="102" height="28" rx="4" fill="#0C1B5E"/>
+                        <text x="55" y="26" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="800" fill="#fff" letter-spacing="2">SNCF</text>
+                    </svg>
+                </div>
+                {# Michelin #}
+                <div class="trust__item">
+                    <svg viewBox="0 0 140 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="10" y="28" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#002B5C">MICHELIN</text>
+                        <line x1="10" y1="32" x2="130" y2="32" stroke="#FDD835" stroke-width="3"/>
+                    </svg>
+                </div>
+                {# Decathlon #}
+                <div class="trust__item">
+                    <svg viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="20" r="10" fill="none" stroke="#0066CC" stroke-width="3"/>
+                        <path d="M10 20 L16 14 L22 20" fill="none" stroke="#0066CC" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <text x="32" y="27" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#0066CC">Decathlon</text>
+                    </svg>
+                </div>
+                {# Bouygues #}
+                <div class="trust__item">
+                    <svg viewBox="0 0 150 40" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="16" cy="20" rx="12" ry="12" fill="#009FE3"/>
+                        <text x="34" y="27" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#003D6B">Bouygues</text>
+                    </svg>
+                </div>
+                {# Carrefour #}
+                <div class="trust__item">
+                    <svg viewBox="0 0 150 40" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 20 L18 8 L18 32 Z" fill="#004E9A"/>
+                        <path d="M28 20 L18 8 L18 32 Z" fill="#E3001B"/>
+                        <text x="34" y="27" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#004E9A">Carrefour</text>
+                    </svg>
+                </div>
+                {# TotalEnergies #}
+                <div class="trust__item">
+                    <svg viewBox="0 0 190 40" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="16" cy="20" r="10" fill="#FF0000"/>
+                        <circle cx="16" cy="20" r="6" fill="#FF6600"/>
+                        <circle cx="16" cy="20" r="3" fill="#FFD700"/>
+                        <text x="32" y="27" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" fill="#E30613">Total</text>
+                        <text x="78" y="27" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="700" fill="#00A651">Energies</text>
+                    </svg>
+                </div>
+                {# Airbus #}
+                <div class="trust__item">
+                    <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+                        <text x="10" y="28" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#00205B" letter-spacing="1.5">AIRBUS</text>
+                        <line x1="10" y1="32" x2="110" y2="32" stroke="#00205B" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {# Section Nos Prestations #}
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nos Prestations</h2>
+                <p class="section-subtitle">Des services complets pour répondre à tous vos besoins</p>
+            </div>
+            <div class="services__grid" data-stagger>
+
+                <div class="services__card">
+                    <div class="services__icon services__icon--blue">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </div>
+                    <h3 class="services__name">Conseil Stratégique</h3>
+                    <p class="services__desc">Développez votre entreprise avec nos experts en stratégie d'affaires et pilotage de croissance.</p>
+                    <a href="#" class="arrow-link">En savoir plus <span>&rarr;</span></a>
+                </div>
+
+                <div class="services__card">
+                    <div class="services__icon services__icon--indigo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 010 7.75"/>
+                        </svg>
+                    </div>
+                    <h3 class="services__name">Gestion de Projet</h3>
+                    <p class="services__desc">Pilotage et coordination de vos projets complexes, de la conception à la livraison.</p>
+                    <a href="#" class="arrow-link">En savoir plus <span>&rarr;</span></a>
+                </div>
+
+                <div class="services__card">
+                    <div class="services__icon services__icon--violet">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="services__name">Formation Pro</h3>
+                    <p class="services__desc">Programmes de formation sur mesure pour vos équipes, certifiants et opérationnels.</p>
+                    <a href="#" class="arrow-link">En savoir plus <span>&rarr;</span></a>
+                </div>
+
+                <div class="services__card">
+                    <div class="services__icon services__icon--emerald">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                    </div>
+                    <h3 class="services__name">Optimisation</h3>
+                    <p class="services__desc">Améliorez vos processus et votre performance grâce à nos méthodes éprouvées.</p>
+                    <a href="#" class="arrow-link">En savoir plus <span>&rarr;</span></a>
+                </div>
+
+                <div class="services__card">
+                    <div class="services__icon services__icon--amber">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <line x1="12" y1="2" x2="12" y2="5"/>
+                            <line x1="12" y1="19" x2="12" y2="22"/>
+                            <line x1="2" y1="12" x2="5" y2="12"/>
+                            <line x1="19" y1="12" x2="22" y2="12"/>
+                            <line x1="4.93" y1="4.93" x2="7.05" y2="7.05"/>
+                            <line x1="16.95" y1="16.95" x2="19.07" y2="19.07"/>
+                            <line x1="4.93" y1="19.07" x2="7.05" y2="16.95"/>
+                            <line x1="16.95" y1="7.05" x2="19.07" y2="4.93"/>
+                        </svg>
+                    </div>
+                    <h3 class="services__name">Innovation</h3>
+                    <p class="services__desc">Transformez vos idées en solutions concrètes grâce à notre accompagnement innovation.</p>
+                    <a href="#" class="arrow-link">En savoir plus <span>&rarr;</span></a>
+                </div>
+
+                <div class="services__card">
+                    <div class="services__icon services__icon--rose">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 12l2 2 4-4"/>
+                            <path d="M12 2a10 10 0 110 20 10 10 0 010-20z"/>
+                        </svg>
+                    </div>
+                    <h3 class="services__name">Audit & Conformité</h3>
+                    <p class="services__desc">Assurez votre conformité réglementaire et sécurisez vos activités durablement.</p>
+                    <a href="#" class="arrow-link">En savoir plus <span>&rarr;</span></a>
+                </div>
+
+            </div>
+            <button class="section-toggle" id="services-toggle">
+                Voir plus <span>&darr;</span>
+            </button>
+        </div>
+    </section>
+
+    {# Section Pourquoi nous choisir #}
+    <section class="why" id="about">
+        <div class="container">
+            <div class="why__grid">
+                <div class="why__content reveal reveal--left">
+                    <h2 class="why__title">Pourquoi nous choisir ?</h2>
+                    <p class="why__text">
+                        Avec plus de 15 ans d'expérience, nous accompagnons les entreprises dans leur
+                        transformation et leur croissance. Notre approche personnalisée garantit des résultats
+                        mesurables.
+                    </p>
+                    <ul class="why__list">
+                        <li>{{ check() }} Plus de 500 projets réalisés avec succès</li>
+                        <li>{{ check() }} Équipe d'experts certifiés et expérimentés</li>
+                        <li>{{ check() }} Accompagnement personnalisé et suivi continu</li>
+                        <li>{{ check() }} Satisfaction client de 98%</li>
+                    </ul>
+                    <a href="#" class="btn btn--primary why__cta why__cta--desktop">Découvrir notre histoire</a>
+                </div>
+                <div class="why__media reveal reveal--right">
+                    <div class="why__video-wrapper">
+                        <video class="why__video" autoplay muted loop playsinline>
+                            <source src="{{ asset('videos/team.mp4') }}" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <a href="#" class="btn btn--primary why__cta why__cta--mobile">Découvrir notre histoire</a>
+            </div>
+        </div>
+    </section>
+
+    {# Section Galerie #}
+    <section class="gallery" id="galerie">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Notre Galerie</h2>
+                <p class="section-subtitle">Découvrez nos dernières réalisations</p>
+            </div>
+        </div>
+        <div class="gallery__grid" data-stagger>
+            <div class="gallery__item">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Bureau moderne" loading="lazy">
+                <div class="gallery__overlay">
+                    <span class="gallery__label">Bureau moderne</span>
                 </div>
             </div>
-            {% endfor %}
+            <div class="gallery__item">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Espace coworking" loading="lazy">
+                <div class="gallery__overlay">
+                    <span class="gallery__label">Espace coworking</span>
+                </div>
+            </div>
+            <div class="gallery__item">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80" alt="Réunion d'équipe" loading="lazy">
+                <div class="gallery__overlay">
+                    <span class="gallery__label">Réunion d'équipe</span>
+                </div>
+            </div>
+            <div class="gallery__item">
+                <img src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=600&q=80" alt="Stratégie digitale" loading="lazy">
+                <div class="gallery__overlay">
+                    <span class="gallery__label">Stratégie digitale</span>
+                </div>
+            </div>
+            <div class="gallery__item">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Workshop créatif" loading="lazy">
+                <div class="gallery__overlay">
+                    <span class="gallery__label">Workshop créatif</span>
+                </div>
+            </div>
+            <div class="gallery__item">
+                <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80" alt="Présentation projet" loading="lazy">
+                <div class="gallery__overlay">
+                    <span class="gallery__label">Présentation projet</span>
+                </div>
+            </div>
+            <div class="gallery__item">
+                <img src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=600&q=80" alt="Collaboration" loading="lazy">
+                <div class="gallery__overlay">
+                    <span class="gallery__label">Collaboration</span>
+                </div>
+            </div>
+            <div class="gallery__item">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=600&q=80" alt="Conférence" loading="lazy">
+                <div class="gallery__overlay">
+                    <span class="gallery__label">Conférence</span>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+        <div class="container">
+            <button class="section-toggle" id="gallery-toggle">
+                Voir plus <span>&darr;</span>
+            </button>
+        </div>
+    </section>
 
-{# ===== CTA ===== #}
-<section class="cta-section" id="contact">
-    <div class="cta-inner reveal">
-        <span class="section-tag light">Consultation gratuite</span>
-        <h2>Prêt à retrouver<br>votre confiance ?</h2>
-        <p>Nos experts vous accompagnent de A à Z. Première consultation offerte et sans engagement.</p>
-        <a href="tel:+33123456789" class="btn-primary large">Appeler maintenant</a>
-    </div>
-</section>
+    {# Section Témoignages — Horizontal Scroll #}
+    <section class="testimonials testimonials--pinned" id="testimonials">
+        <div class="testimonials__pin">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Ce que disent nos clients</h2>
+                    <p class="section-subtitle">Leur confiance est notre plus grande fierté</p>
+                </div>
+            </div>
+            <div class="testimonials__track" id="testimonials-track">
+                <div class="testimonials__card">
+                    <div class="testimonials__stars">
+                        {% for s in 1..5 %}{{ star() }}{% endfor %}
+                    </div>
+                    <p class="testimonials__text">"ProService a transformé notre façon de travailler. Leur expertise en conseil stratégique nous a permis d'augmenter notre chiffre d'affaires de 35% en un an."</p>
+                    <div class="testimonials__author">
+                        <div class="testimonials__avatar">SL</div>
+                        <div>
+                            <p class="testimonials__name">Sophie Laurent</p>
+                            <p class="testimonials__role">Directrice Générale, TechVision</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="testimonials__card">
+                    <div class="testimonials__stars">
+                        {% for s in 1..5 %}{{ star() }}{% endfor %}
+                    </div>
+                    <p class="testimonials__text">"Un accompagnement exceptionnel du début à la fin. L'équipe est réactive, professionnelle et toujours force de proposition. Je recommande vivement."</p>
+                    <div class="testimonials__author">
+                        <div class="testimonials__avatar">MD</div>
+                        <div>
+                            <p class="testimonials__name">Marc Dupont</p>
+                            <p class="testimonials__role">CEO, InnovaGroup</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonials__card">
+                    <div class="testimonials__stars">
+                        {% for s in 1..5 %}{{ star() }}{% endfor %}
+                    </div>
+                    <p class="testimonials__text">"Les formations dispensées par ProService ont réellement boosté les compétences de nos équipes. Un investissement qui a porté ses fruits très rapidement."</p>
+                    <div class="testimonials__author">
+                        <div class="testimonials__avatar">CB</div>
+                        <div>
+                            <p class="testimonials__name">Claire Bernard</p>
+                            <p class="testimonials__role">DRH, Nexus Solutions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonials__card">
+                    <div class="testimonials__stars">
+                        {% for s in 1..5 %}{{ star() }}{% endfor %}
+                    </div>
+                    <p class="testimonials__text">"Grâce à ProService, nous avons pu restructurer notre organisation interne en seulement 3 mois. Résultat : une productivité en hausse de 40%."</p>
+                    <div class="testimonials__author">
+                        <div class="testimonials__avatar">PG</div>
+                        <div>
+                            <p class="testimonials__name">Philippe Garcia</p>
+                            <p class="testimonials__role">Fondateur, StartUp Lab</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonials__card">
+                    <div class="testimonials__stars">
+                        {% for s in 1..5 %}{{ star() }}{% endfor %}
+                    </div>
+                    <p class="testimonials__text">"Une équipe à l'écoute et des solutions concrètes. Notre transformation digitale s'est faite en douceur grâce à leur méthode structurée et efficace."</p>
+                    <div class="testimonials__author">
+                        <div class="testimonials__avatar">AM</div>
+                        <div>
+                            <p class="testimonials__name">Amélie Martin</p>
+                            <p class="testimonials__role">DSI, Lyon Métropole Services</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonials__card">
+                    <div class="testimonials__stars">
+                        {% for s in 1..5 %}{{ star() }}{% endfor %}
+                    </div>
+                    <p class="testimonials__text">"Je travaille avec ProService depuis 2 ans et chaque projet est mené avec le même niveau d'excellence. Un partenaire de confiance pour le long terme."</p>
+                    <div class="testimonials__author">
+                        <div class="testimonials__avatar">TR</div>
+                        <div>
+                            <p class="testimonials__name">Thomas Renaud</p>
+                            <p class="testimonials__role">Directeur Commercial, AlphaConseil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof gsap === 'undefined' || window.innerWidth < 769) return;
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            var track = document.getElementById('testimonials-track');
+            var pin = document.querySelector('.testimonials__pin');
+            if (!track || !pin) return;
+
+            var headerH = document.getElementById('site-header') ? document.getElementById('site-header').offsetHeight : 0;
+            var scrollDistance = track.scrollWidth - window.innerWidth;
+
+            gsap.to(track, {
+                x: -scrollDistance,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '#testimonials',
+                    pin: pin,
+                    pinSpacing: true,
+                    start: 'top ' + headerH,
+                    end: '+=' + (scrollDistance + 200),
+                    scrub: 1,
+                    anticipatePin: 1
+                }
+            });
+        });
+    </script>
+
+    {# Section Derniers Articles #}
+    <section class="blog" id="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Derniers Articles</h2>
+                <p class="section-subtitle">Restez informé de nos actualités et conseils</p>
+            </div>
+            <div class="blog__grid" data-stagger>
+
+                <article class="blog__card">
+                    <div class="blog__image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Stratégie digitale" loading="lazy">
+                        <span class="blog__tag">Stratégie</span>
+                    </div>
+                    <div class="blog__body">
+                        <div class="blog__meta">
+                            <span>12 Fév 2026</span>
+                            <span class="blog__meta-sep"></span>
+                            <span>5 min de lecture</span>
+                        </div>
+                        <h3 class="blog__name">Comment définir une stratégie digitale efficace en 2026</h3>
+                        <p class="blog__excerpt">Découvrez les étapes clés pour bâtir une stratégie digitale performante et adaptée aux nouveaux enjeux du marché.</p>
+                        <a href="#" class="arrow-link">Lire l'article <span>&rarr;</span></a>
+                    </div>
+                </article>
+
+                <article class="blog__card">
+                    <div class="blog__image">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Management" loading="lazy">
+                        <span class="blog__tag">Management</span>
+                    </div>
+                    <div class="blog__body">
+                        <div class="blog__meta">
+                            <span>5 Fév 2026</span>
+                            <span class="blog__meta-sep"></span>
+                            <span>7 min de lecture</span>
+                        </div>
+                        <h3 class="blog__name">Les 5 piliers d'un management agile et performant</h3>
+                        <p class="blog__excerpt">Le management agile transforme les organisations. Voici les principes fondamentaux pour l'adopter dans votre entreprise.</p>
+                        <a href="#" class="arrow-link">Lire l'article <span>&rarr;</span></a>
+                    </div>
+                </article>
+
+                <article class="blog__card">
+                    <div class="blog__image">
+                        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=600&q=80" alt="Innovation" loading="lazy">
+                        <span class="blog__tag">Innovation</span>
+                    </div>
+                    <div class="blog__body">
+                        <div class="blog__meta">
+                            <span>28 Jan 2026</span>
+                            <span class="blog__meta-sep"></span>
+                            <span>4 min de lecture</span>
+                        </div>
+                        <h3 class="blog__name">L'intelligence artificielle au service de la productivité</h3>
+                        <p class="blog__excerpt">Comment intégrer l'IA dans vos processus métier pour gagner en efficacité et en compétitivité sur votre marché.</p>
+                        <a href="#" class="arrow-link">Lire l'article <span>&rarr;</span></a>
+                    </div>
+                </article>
+
+            </div>
+            <button class="section-toggle" id="blog-toggle">
+                Voir plus <span>&darr;</span>
+            </button>
+            <div class="blog__footer">
+                <a href="#" class="blog__btn">Voir tous les articles <span>&rarr;</span></a>
+            </div>
+        </div>
+    </section>
+
+    {# Section Newsletter #}
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter__inner">
+                <div class="newsletter__text">
+                    <h2 class="newsletter__title">Restez connecté</h2>
+                    <p class="newsletter__desc">Inscrivez-vous à notre newsletter et recevez nos derniers conseils, actualités et offres exclusives directement dans votre boîte mail.</p>
+                </div>
+                <form class="newsletter__form" action="#" method="post">
+                    <div class="newsletter__field">
+                        <label for="newsletter-email" class="sr-only">Adresse email</label>
+                        <input type="email" id="newsletter-email" class="newsletter__input" placeholder="Votre adresse email" required>
+                        <button type="submit" class="newsletter__btn">S'inscrire</button>
+                    </div>
+                    <p class="newsletter__note">Pas de spam, uniquement du contenu de qualité. Désabonnement en un clic.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    {# Section Notre Équipe #}
+    <section class="team" id="equipe">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Notre Équipe</h2>
+                <p class="section-subtitle">Des experts passionnés à votre service</p>
+            </div>
+            <div class="team__grid" data-stagger>
+
+                <div class="team__card">
+                    <div class="team__photo">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Thomas Martin" loading="lazy">
+                        <div class="team__social">
+                            <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+                            <a href="#" aria-label="Twitter">{{ twitter() }}</a>
+                        </div>
+                    </div>
+                    <div class="team__info">
+                        <h3 class="team__name">Thomas Martin</h3>
+                        <p class="team__role">Directeur Général</p>
+                    </div>
+                </div>
+
+                <div class="team__card">
+                    <div class="team__photo">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="Marie Dubois" loading="lazy">
+                        <div class="team__social">
+                            <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+                            <a href="#" aria-label="Twitter">{{ twitter() }}</a>
+                        </div>
+                    </div>
+                    <div class="team__info">
+                        <h3 class="team__name">Marie Dubois</h3>
+                        <p class="team__role">Directrice Stratégie</p>
+                    </div>
+                </div>
+
+                <div class="team__card">
+                    <div class="team__photo">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80" alt="Lucas Moreau" loading="lazy">
+                        <div class="team__social">
+                            <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+                            <a href="#" aria-label="Twitter">{{ twitter() }}</a>
+                        </div>
+                    </div>
+                    <div class="team__info">
+                        <h3 class="team__name">Lucas Moreau</h3>
+                        <p class="team__role">Chef de Projet</p>
+                    </div>
+                </div>
+
+                <div class="team__card">
+                    <div class="team__photo">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80" alt="Camille Petit" loading="lazy">
+                        <div class="team__social">
+                            <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+                            <a href="#" aria-label="Twitter">{{ twitter() }}</a>
+                        </div>
+                    </div>
+                    <div class="team__info">
+                        <h3 class="team__name">Camille Petit</h3>
+                        <p class="team__role">Responsable Formation</p>
+                    </div>
+                </div>
+
+            </div>
+            <button class="section-toggle" id="team-toggle">
+                Voir toute notre équipe <span>&darr;</span>
+            </button>
+        </div>
+    </section>
 {% endblock %}

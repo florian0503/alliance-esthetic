@@ -1,0 +1,266 @@
+{% extends 'base.html.twig' %}
+{% from 'partials/_icons.html.twig' import check %}
+
+{% block title %}ProService — Nos Services{% endblock %}
+
+{% block body %}
+    {# Page Banner #}
+    <section class="page-banner">
+        <div class="page-banner__content">
+            <h1 class="page-banner__title">Nos Services</h1>
+            <p class="page-banner__subtitle">Des solutions sur mesure pour accompagner votre croissance</p>
+            <div class="page-banner__breadcrumb">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <span>/</span>
+                <span>Services</span>
+            </div>
+        </div>
+    </section>
+
+    {# Services Cards #}
+    <section class="svc-cards">
+        <div class="container">
+            <div class="svc-cards__grid" data-stagger>
+
+                {# Card 1 — Conseil Stratégique #}
+                <div class="svc-card">
+                    <div class="svc-card__image">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Conseil Stratégique" loading="lazy">
+                    </div>
+                    <div class="svc-card__body">
+                        <h3 class="svc-card__name">Conseil Stratégique</h3>
+                        <p class="svc-card__desc">Développez votre entreprise avec nos experts en stratégie d'affaires et management.</p>
+                        <ul class="svc-card__features">
+                            <li>{{ check() }} Analyse de marché approfondie</li>
+                            <li>{{ check() }} Planification stratégique</li>
+                            <li>{{ check() }} Optimisation des processus</li>
+                        </ul>
+                        <div class="svc-card__footer">
+                            <div class="svc-card__price">
+                                <span class="svc-card__price-label">À partir de</span>
+                                <span class="svc-card__price-value">2500€</span>
+                            </div>
+                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                {# Card 2 — Gestion de Projet #}
+                <div class="svc-card">
+                    <div class="svc-card__image">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Gestion de Projet" loading="lazy">
+                    </div>
+                    <div class="svc-card__body">
+                        <h3 class="svc-card__name">Gestion de Projet</h3>
+                        <p class="svc-card__desc">Pilotage et coordination de vos projets complexes pour garantir leur succès.</p>
+                        <ul class="svc-card__features">
+                            <li>{{ check() }} Méthodologies agiles</li>
+                            <li>{{ check() }} Gestion des risques</li>
+                            <li>{{ check() }} Coordination d'équipes</li>
+                        </ul>
+                        <div class="svc-card__footer">
+                            <div class="svc-card__price">
+                                <span class="svc-card__price-label">À partir de</span>
+                                <span class="svc-card__price-value">3000€</span>
+                            </div>
+                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                {# Card 3 — Formation Professionnelle #}
+                <div class="svc-card">
+                    <div class="svc-card__image">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80" alt="Formation Professionnelle" loading="lazy">
+                    </div>
+                    <div class="svc-card__body">
+                        <h3 class="svc-card__name">Formation Professionnelle</h3>
+                        <p class="svc-card__desc">Programmes de formation sur mesure pour développer les compétences de vos équipes.</p>
+                        <ul class="svc-card__features">
+                            <li>{{ check() }} Formation personnalisée</li>
+                            <li>{{ check() }} Certification incluse</li>
+                            <li>{{ check() }} Support post-formation</li>
+                        </ul>
+                        <div class="svc-card__footer">
+                            <div class="svc-card__price">
+                                <span class="svc-card__price-label">À partir de</span>
+                                <span class="svc-card__price-value">1500€</span>
+                            </div>
+                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                {# Card 4 — Optimisation #}
+                <div class="svc-card">
+                    <div class="svc-card__image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Optimisation" loading="lazy">
+                    </div>
+                    <div class="svc-card__body">
+                        <h3 class="svc-card__name">Optimisation</h3>
+                        <p class="svc-card__desc">Améliorez vos processus et votre performance grâce à nos méthodes éprouvées.</p>
+                        <ul class="svc-card__features">
+                            <li>{{ check() }} Analyse des processus</li>
+                            <li>{{ check() }} Automatisation des workflows</li>
+                            <li>{{ check() }} Amélioration continue</li>
+                        </ul>
+                        <div class="svc-card__footer">
+                            <div class="svc-card__price">
+                                <span class="svc-card__price-label">À partir de</span>
+                                <span class="svc-card__price-value">2000€</span>
+                            </div>
+                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                {# Card 5 — Innovation #}
+                <div class="svc-card">
+                    <div class="svc-card__image">
+                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80" alt="Innovation" loading="lazy">
+                    </div>
+                    <div class="svc-card__body">
+                        <h3 class="svc-card__name">Innovation & Digital</h3>
+                        <p class="svc-card__desc">Transformez vos idées en solutions concrètes grâce à notre accompagnement innovation.</p>
+                        <ul class="svc-card__features">
+                            <li>{{ check() }} Veille technologique</li>
+                            <li>{{ check() }} Design Thinking</li>
+                            <li>{{ check() }} Transformation digitale</li>
+                        </ul>
+                        <div class="svc-card__footer">
+                            <div class="svc-card__price">
+                                <span class="svc-card__price-label">À partir de</span>
+                                <span class="svc-card__price-value">3500€</span>
+                            </div>
+                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                {# Card 6 — Audit & Conformité #}
+                <div class="svc-card">
+                    <div class="svc-card__image">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80" alt="Audit & Conformité" loading="lazy">
+                    </div>
+                    <div class="svc-card__body">
+                        <h3 class="svc-card__name">Audit & Conformité</h3>
+                        <p class="svc-card__desc">Assurez votre conformité réglementaire et sécurisez vos activités durablement.</p>
+                        <ul class="svc-card__features">
+                            <li>{{ check() }} Diagnostic de conformité</li>
+                            <li>{{ check() }} RGPD & normes ISO</li>
+                            <li>{{ check() }} Plan de remédiation</li>
+                        </ul>
+                        <div class="svc-card__footer">
+                            <div class="svc-card__price">
+                                <span class="svc-card__price-label">À partir de</span>
+                                <span class="svc-card__price-value">1800€</span>
+                            </div>
+                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <button class="section-toggle" id="svc-cards-toggle">
+                Voir plus <span>&darr;</span>
+            </button>
+        </div>
+    </section>
+
+    {# Notre approche — Reveal séquentiel au scroll #}
+    <section class="svc-process" id="svc-process">
+        <div class="svc-process__pin">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Notre Approche</h2>
+                    <p class="section-subtitle">Une méthodologie éprouvée en 4 étapes pour garantir votre succès</p>
+                </div>
+            </div>
+            <div class="svc-process__grid" id="svc-process-grid">
+                    <div class="svc-process__step svc-reveal">
+                        <div class="svc-process__number">01</div>
+                        <h3 class="svc-process__name">Diagnostic</h3>
+                        <p class="svc-process__desc">Nous analysons votre situation actuelle, vos objectifs et vos contraintes pour établir un état des lieux complet.</p>
+                    </div>
+                    <div class="svc-process__arrow svc-reveal">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="14 7 19 12 14 17"/></svg>
+                    </div>
+                    <div class="svc-process__step svc-reveal">
+                        <div class="svc-process__number">02</div>
+                        <h3 class="svc-process__name">Stratégie</h3>
+                        <p class="svc-process__desc">Nous élaborons ensemble une stratégie sur mesure, avec des objectifs clairs, mesurables et un planning réaliste.</p>
+                    </div>
+                    <div class="svc-process__arrow svc-reveal">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="14 7 19 12 14 17"/></svg>
+                    </div>
+                    <div class="svc-process__step svc-reveal">
+                        <div class="svc-process__number">03</div>
+                        <h3 class="svc-process__name">Exécution</h3>
+                        <p class="svc-process__desc">Notre équipe déploie les solutions avec rigueur et agilité, en vous tenant informé à chaque étape clé du projet.</p>
+                    </div>
+                    <div class="svc-process__arrow svc-reveal">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="14 7 19 12 14 17"/></svg>
+                    </div>
+                    <div class="svc-process__step svc-reveal">
+                        <div class="svc-process__number">04</div>
+                        <h3 class="svc-process__name">Suivi</h3>
+                        <p class="svc-process__desc">Nous mesurons les résultats, ajustons si nécessaire et garantissons un accompagnement sur le long terme.</p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof gsap === 'undefined' || window.innerWidth < 769) return;
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            var items = document.querySelectorAll('.svc-reveal');
+            var pin = document.querySelector('.svc-process__pin');
+            if (!items.length || !pin) return;
+
+            /* Hauteur du header fixe */
+            var headerH = document.getElementById('site-header') ? document.getElementById('site-header').offsetHeight : 0;
+
+            /* Timeline liée au scroll */
+            var tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#svc-process',
+                    pin: pin,
+                    pinSpacing: true,
+                    start: 'top ' + headerH,
+                    end: '+=' + (items.length * 300),
+                    scrub: 0.8,
+                    anticipatePin: 1
+                }
+            });
+
+            /* Chaque élément apparaît un par un */
+            items.forEach(function (item, i) {
+                tl.fromTo(item,
+                    { opacity: 0, scale: 0.85, y: 20 },
+                    { opacity: 1, scale: 1, y: 0, duration: 1, ease: 'power2.out' }
+                );
+                /* Petite pause entre chaque */
+                if (i < items.length - 1) {
+                    tl.to({}, { duration: 0.3 });
+                }
+            });
+        });
+    </script>
+
+    {# CTA final #}
+    <section class="svc-cta" data-scroll-top-light>
+        <div class="container">
+            <div class="svc-cta__inner reveal">
+                <h2 class="svc-cta__title">Prêt à transformer votre entreprise ?</h2>
+                <p class="svc-cta__desc">Discutons ensemble de vos projets. Notre équipe est prête à vous accompagner vers le succès.</p>
+                <div class="svc-cta__actions">
+                    <a href="#" class="btn btn--white">Prendre rendez-vous</a>
+                    <a href="tel:+33123456789" class="btn btn--outline-dark">+33 1 23 45 67 89</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

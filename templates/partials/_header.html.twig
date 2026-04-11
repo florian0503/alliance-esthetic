@@ -1,0 +1,80 @@
+{% from 'partials/_icons.html.twig' import phone, email, facebook, instagram, linkedin %}
+{% set is_home = app.request.attributes.get('_route') == 'app_home' %}
+
+<header class="site-header{{ not is_home ? ' site-header--solid' : '' }}" id="site-header" data-transparent="{{ is_home ? '1' : '0' }}">
+
+{# Top Bar #}
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar__contact">
+            <a href="tel:+33123456789">
+                {{ phone() }}
+                +33 1 23 45 67 89
+            </a>
+            <a href="mailto:contact@example.com">
+                {{ email() }}
+                contact@example.com
+            </a>
+        </div>
+        <div class="top-bar__social">
+            <a href="#" aria-label="Facebook">{{ facebook() }}</a>
+            <a href="#" aria-label="Instagram">{{ instagram() }}</a>
+            <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+        </div>
+    </div>
+</div>
+
+{# Navbar #}
+<nav class="navbar">
+    <div class="container">
+        <a href="{{ path('app_home') }}" class="navbar__brand">ProService</a>
+
+        <button class="navbar__toggle" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        {% set current_route = app.request.attributes.get('_route') ?? '' %}
+        <ul class="navbar__menu" id="navbar-menu">
+            <li><a href="{{ path('app_home') }}" class="navbar__link{{ current_route == 'app_home' ? ' navbar__link--active' : '' }}">Accueil</a></li>
+            <li><a href="{{ path('app_services') }}" class="navbar__link{{ current_route == 'app_services' ? ' navbar__link--active' : '' }}">Services</a></li>
+            <li><a href="#" class="navbar__link">À propos</a></li>
+            <li><a href="#" class="navbar__link">Blog</a></li>
+            <li><a href="#" class="navbar__link">Galerie</a></li>
+            <li><a href="#" class="navbar__link">Contact</a></li>
+            <li class="navbar__cta-mobile"><a href="#" class="navbar__cta">Réserver en ligne</a></li>
+        </ul>
+
+        <a href="#" class="navbar__cta navbar__cta--desktop">Réserver en ligne</a>
+    </div>
+</nav>
+
+</header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var toggle = document.querySelector('.navbar__toggle');
+        var menu = document.getElementById('navbar-menu');
+
+        var header = document.getElementById('site-header');
+
+        if (toggle && menu && header) {
+            toggle.addEventListener('click', function () {
+                var isOpen = menu.classList.toggle('is-open');
+                toggle.classList.toggle('is-active', isOpen);
+                header.classList.toggle('menu-open', isOpen);
+                toggle.setAttribute('aria-expanded', String(isOpen));
+            });
+        }
+
+        /* Header transparent → blanc au scroll (uniquement page accueil) */
+        if (header && header.dataset.transparent === '1') {
+            var onScroll = function () {
+                header.classList.toggle('is-scrolled', window.scrollY > 80);
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        }
+    });
+</script>

@@ -1,0 +1,93 @@
+{% from 'partials/_icons.html.twig' import facebook, instagram, linkedin, twitter, phone, email, location %}
+
+{# Footer #}
+<footer class="footer">
+    <div class="footer__main">
+        <div class="container">
+            <div class="footer__grid">
+                {# Colonne 1 : Marque #}
+                <div class="footer__col">
+                    <a href="{{ path('app_home') }}" class="footer__brand">ProService</a>
+                    <p class="footer__desc">
+                        Votre partenaire de confiance pour des services
+                        professionnels de qualité. Excellence, fiabilité et
+                        satisfaction client depuis 2010.
+                    </p>
+                    <div class="footer__social footer__social--desktop">
+                        <a href="#" aria-label="Facebook">{{ facebook() }}</a>
+                        <a href="#" aria-label="Instagram">{{ instagram() }}</a>
+                        <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+                        <a href="#" aria-label="Twitter">{{ twitter() }}</a>
+                    </div>
+                </div>
+
+                {# Colonne 2 : Liens rapides #}
+                <div class="footer__col footer__col--links">
+                    <h3 class="footer__title">Liens rapides</h3>
+                    <ul class="footer__links">
+                        <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                        <li><a href="#">Nos Services</a></li>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Galerie</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                {# Colonne 3 : Contact #}
+                <div class="footer__col footer__col--contact">
+                    <h3 class="footer__title">Contactez-nous</h3>
+                    <ul class="footer__contact">
+                        <li>
+                            {{ location() }}
+                            <span>47 Boulevard Victor Hugo<br>69006 Lyon, France</span>
+                        </li>
+                        <li>
+                            {{ phone() }}
+                            <a href="tel:+33123456789">+33 1 23 45 67 89</a>
+                        </li>
+                        <li>
+                            {{ email() }}
+                            <a href="mailto:contact@example.com">contact@example.com</a>
+                        </li>
+                    </ul>
+                </div>
+
+                {# Colonne 4 : Localisation #}
+                <div class="footer__col">
+                    <h3 class="footer__title">Notre localisation</h3>
+                    <div class="footer__map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2783.8!2d4.834!3d45.764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f4ea516ae88797%3A0x408ab2ae4bb21f0!2s47%20Bd%20Victor%20Hugo%2C%2069006%20Lyon!5e0!3m2!1sfr!2sfr!4v1700000000000"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Localisation ProService - Lyon">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Bottom Bar #}
+    <div class="footer__bottom">
+        <div class="container">
+            <div class="footer__social footer__social--mobile">
+                <a href="#" aria-label="Facebook">{{ facebook() }}</a>
+                <a href="#" aria-label="Instagram">{{ instagram() }}</a>
+                <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+                <a href="#" aria-label="Twitter">{{ twitter() }}</a>
+            </div>
+            <p>&copy; 2026 ProService. Tous droits réservés.</p>
+            <div class="footer__legal">
+                <a href="#">Mentions légales</a>
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">CGV</a>
+            </div>
+        </div>
+    </div>
+</footer>
