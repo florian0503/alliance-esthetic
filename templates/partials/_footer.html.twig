@@ -7,11 +7,10 @@
             <div class="footer__grid">
                 {# Colonne 1 : Marque #}
                 <div class="footer__col">
-                    <a href="{{ path('app_home') }}" class="footer__brand">ProService</a>
+                    <a href="{{ path('app_home') }}" class="footer__brand">Alliance Esthetic</a>
                     <p class="footer__desc">
-                        Votre partenaire de confiance pour des services
-                        professionnels de qualité. Excellence, fiabilité et
-                        satisfaction client depuis 2010.
+                        Votre clinique spécialisée en implantologie capillaire et dentisterie esthétique.
+                        Des résultats naturels et durables, une équipe médicale certifiée depuis 2014.
                     </p>
                     <div class="footer__social footer__social--desktop">
                         <a href="#" aria-label="Facebook">{{ facebook() }}</a>
@@ -26,10 +25,8 @@
                     <h3 class="footer__title">Liens rapides</h3>
                     <ul class="footer__links">
                         <li><a href="{{ path('app_home') }}">Accueil</a></li>
-                        <li><a href="#">Nos Services</a></li>
-                        <li><a href="#">À propos</a></li>
-                        <li><a href="#">Galerie</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="{{ path('app_services') }}">Services</a></li>
+                        <li><a href="#">Assurance</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
@@ -48,7 +45,7 @@
                         </li>
                         <li>
                             {{ email() }}
-                            <a href="mailto:contact@example.com">contact@example.com</a>
+                            <a href="mailto:contact@alliance-esthetic.fr">contact@alliance-esthetic.fr</a>
                         </li>
                     </ul>
                 </div>
@@ -65,7 +62,7 @@
                             allowfullscreen=""
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
-                            title="Localisation ProService - Lyon">
+                            title="Localisation Alliance Esthetic - Lyon">
                         </iframe>
                     </div>
                 </div>
@@ -82,7 +79,7 @@
                 <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
                 <a href="#" aria-label="Twitter">{{ twitter() }}</a>
             </div>
-            <p>&copy; 2026 ProService. Tous droits réservés.</p>
+            <p>&copy; 2026 Alliance Esthetic. Tous droits réservés. — Réalisé par <a href="https://entryweb.fr" target="_blank" rel="noopener noreferrer"><strong>EntryWeb</strong></a></p>
             <div class="footer__legal">
                 <a href="#">Mentions légales</a>
                 <a href="#">Politique de confidentialité</a>
