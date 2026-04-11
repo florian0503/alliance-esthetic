@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alliance Esthetic — Implantologie Capillaire à Paris{% endblock %}
+
+{% block body %}
+
+{# ===== HERO VIDEO ===== #}
+<section class="hero">
+    <div class="hero-media">
+        <video autoplay muted loop playsinline>
+            <source src="{{ asset('videos/hero.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content reveal">
+        <span class="hero-tag">Clinique d'excellence capillaire</span>
+        <h1>Retrouvez votre<br>confiance naturelle</h1>
+        <p>Techniques FUE &amp; DHI de précision. Résultats naturels, durables et sans cicatrices visibles à Paris.</p>
+        <div class="hero-ctas">
+            <a href="#contact" class="btn-primary">Prendre rendez-vous</a>
+            <a href="#services" class="btn-secondary">Découvrir nos services</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        Défiler<span></span>
+    </div>
+</section>
+
+{# ===== STATS ===== #}
+<section class="stats">
+    <div class="stats-inner">
+        <div class="stat-item">
+            <span class="stat-number">500<span class="gold">+</span></span>
+            <span class="stat-label">Patients satisfaits</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">5 <span class="gold">ans</span></span>
+            <span class="stat-label">D'expertise capillaire</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">98<span class="gold">%</span></span>
+            <span class="stat-label">Taux de satisfaction</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Techniques maîtrisées</span>
+        </div>
+    </div>
+</section>
+
+{# ===== SERVICES ===== #}
+<section class="services" id="services">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="section-tag">Nos expertises</span>
+            <h2>Des solutions sur mesure<br>pour chaque profil</h2>
+        </div>
+        <div class="services-grid">
+            {% for service in services %}
+            <div class="service-card {{ service.featured ? 'featured' : '' }} reveal">
+                <div class="service-icon">
+                    {% if loop.index == 1 %}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                        <path d="M12 8v8M8 12h8"/>
+                    </svg>
+                    {% elseif loop.index == 2 %}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/>
+                    </svg>
+                    {% else %}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    {% endif %}
+                </div>
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.description }}</p>
+                <a href="#" class="link-gold">En savoir plus →</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# ===== TESTIMONIALS ===== #}
+<section class="testimonials">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <span class="section-tag">Témoignages</span>
+            <h2>Ce que disent nos patients</h2>
+        </div>
+        <div class="testimonials-grid">
+            {% for t in testimonials %}
+            <div class="testimonial-card reveal">
+                <div class="stars">
+                    {% for i in 1..t.rating %}★{% endfor %}
+                </div>
+                <p class="testimonial-text">« {{ t.text }} »</p>
+                <div class="testimonial-author">
+                    <span class="author-name">{{ t.name }}</span>
+                    <span class="author-detail">{{ t.procedure }} &middot; {{ t.date }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{# ===== CTA ===== #}
+<section class="cta-section" id="contact">
+    <div class="cta-inner reveal">
+        <span class="section-tag light">Consultation gratuite</span>
+        <h2>Prêt à retrouver<br>votre confiance ?</h2>
+        <p>Nos experts vous accompagnent de A à Z. Première consultation offerte et sans engagement.</p>
+        <a href="tel:+33123456789" class="btn-primary large">Appeler maintenant</a>
+    </div>
+</section>
+
+{% endblock %}
