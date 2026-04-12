@@ -253,7 +253,7 @@ ul {
    TOP BAR
    ============================================ */
 .top-bar {
-    background-color: rgba(212, 184, 150, 0.15);
+    background-color: rgba(106, 177, 217, 0.35);
     color: #fff;
     font-size: 0.85rem;
     padding: 8px 0;
@@ -284,7 +284,7 @@ ul {
     display: flex;
     align-items: center;
     gap: 6px;
-    color: #cbd5e1;
+    color: #fff;
     transition: color 0.2s;
 }
 
@@ -344,7 +344,7 @@ ul {
 }
 
 .navbar__logo {
-    height: 80px;
+    height: 175px;
     width: auto;
     display: block;
 }
@@ -2997,7 +2997,7 @@ ul {
 
 .ba-slider__tag--after {
     right: 16px;
-    background: rgba(212, 184, 150, 0.9);
+    background: rgba(106, 177, 217, 0.9);
     color: #fff;
     backdrop-filter: blur(4px);
 }
