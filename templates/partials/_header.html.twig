@@ -41,8 +41,8 @@
         <ul class="navbar__menu" id="navbar-menu">
             <li><a href="{{ path('app_home') }}" class="navbar__link{{ current_route == 'app_home' ? ' navbar__link--active' : '' }}">Accueil</a></li>
             <li><a href="{{ path('app_services') }}" class="navbar__link{{ current_route == 'app_services' ? ' navbar__link--active' : '' }}">Services</a></li>
-            <li><a href="#" class="navbar__link">Assurance</a></li>
-            <li><a href="#" class="navbar__link">Contact</a></li>
+            <li><a href="{{ path('app_assurance') }}" class="navbar__link{{ current_route == 'app_assurance' ? ' navbar__link--active' : '' }}">Assurance</a></li>
+            <li><a href="{{ path('app_contact') }}" class="navbar__link{{ current_route == 'app_contact' ? ' navbar__link--active' : '' }}">Contact</a></li>
             <li class="navbar__cta-mobile"><a href="#" class="navbar__cta">Réserver en ligne</a></li>
         </ul>
 
