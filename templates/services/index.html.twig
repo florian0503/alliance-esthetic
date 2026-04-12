@@ -1,14 +1,13 @@
 {% extends 'base.html.twig' %}
-{% from 'partials/_icons.html.twig' import check %}
 
-{% block title %}ProService — Nos Services{% endblock %}
+{% block title %}Alliance Esthetic — Nos Services{% endblock %}
 
 {% block body %}
     {# Page Banner #}
     <section class="page-banner">
         <div class="page-banner__content">
             <h1 class="page-banner__title">Nos Services</h1>
-            <p class="page-banner__subtitle">Des solutions sur mesure pour accompagner votre croissance</p>
+            <p class="page-banner__subtitle">Implantologie capillaire & dentisterie esthétique — des résultats qui changent la vie</p>
             <div class="page-banner__breadcrumb">
                 <a href="{{ path('app_home') }}">Accueil</a>
                 <span>/</span>
@@ -17,250 +16,291 @@
         </div>
     </section>
 
-    {# Services Cards #}
-    <section class="svc-cards">
+    {# ============================================
+       IMPLANTOLOGIE CAPILLAIRE — titre
+       ============================================ #}
+    <section class="svc-section" id="capillaire">
         <div class="container">
-            <div class="svc-cards__grid" data-stagger>
-
-                {# Card 1 — Conseil Stratégique #}
-                <div class="svc-card">
-                    <div class="svc-card__image">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Conseil Stratégique" loading="lazy">
-                    </div>
-                    <div class="svc-card__body">
-                        <h3 class="svc-card__name">Conseil Stratégique</h3>
-                        <p class="svc-card__desc">Développez votre entreprise avec nos experts en stratégie d'affaires et management.</p>
-                        <ul class="svc-card__features">
-                            <li>{{ check() }} Analyse de marché approfondie</li>
-                            <li>{{ check() }} Planification stratégique</li>
-                            <li>{{ check() }} Optimisation des processus</li>
-                        </ul>
-                        <div class="svc-card__footer">
-                            <div class="svc-card__price">
-                                <span class="svc-card__price-label">À partir de</span>
-                                <span class="svc-card__price-value">2500€</span>
-                            </div>
-                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
-                        </div>
-                    </div>
-                </div>
-
-                {# Card 2 — Gestion de Projet #}
-                <div class="svc-card">
-                    <div class="svc-card__image">
-                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" alt="Gestion de Projet" loading="lazy">
-                    </div>
-                    <div class="svc-card__body">
-                        <h3 class="svc-card__name">Gestion de Projet</h3>
-                        <p class="svc-card__desc">Pilotage et coordination de vos projets complexes pour garantir leur succès.</p>
-                        <ul class="svc-card__features">
-                            <li>{{ check() }} Méthodologies agiles</li>
-                            <li>{{ check() }} Gestion des risques</li>
-                            <li>{{ check() }} Coordination d'équipes</li>
-                        </ul>
-                        <div class="svc-card__footer">
-                            <div class="svc-card__price">
-                                <span class="svc-card__price-label">À partir de</span>
-                                <span class="svc-card__price-value">3000€</span>
-                            </div>
-                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
-                        </div>
-                    </div>
-                </div>
-
-                {# Card 3 — Formation Professionnelle #}
-                <div class="svc-card">
-                    <div class="svc-card__image">
-                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80" alt="Formation Professionnelle" loading="lazy">
-                    </div>
-                    <div class="svc-card__body">
-                        <h3 class="svc-card__name">Formation Professionnelle</h3>
-                        <p class="svc-card__desc">Programmes de formation sur mesure pour développer les compétences de vos équipes.</p>
-                        <ul class="svc-card__features">
-                            <li>{{ check() }} Formation personnalisée</li>
-                            <li>{{ check() }} Certification incluse</li>
-                            <li>{{ check() }} Support post-formation</li>
-                        </ul>
-                        <div class="svc-card__footer">
-                            <div class="svc-card__price">
-                                <span class="svc-card__price-label">À partir de</span>
-                                <span class="svc-card__price-value">1500€</span>
-                            </div>
-                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
-                        </div>
-                    </div>
-                </div>
-
-                {# Card 4 — Optimisation #}
-                <div class="svc-card">
-                    <div class="svc-card__image">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" alt="Optimisation" loading="lazy">
-                    </div>
-                    <div class="svc-card__body">
-                        <h3 class="svc-card__name">Optimisation</h3>
-                        <p class="svc-card__desc">Améliorez vos processus et votre performance grâce à nos méthodes éprouvées.</p>
-                        <ul class="svc-card__features">
-                            <li>{{ check() }} Analyse des processus</li>
-                            <li>{{ check() }} Automatisation des workflows</li>
-                            <li>{{ check() }} Amélioration continue</li>
-                        </ul>
-                        <div class="svc-card__footer">
-                            <div class="svc-card__price">
-                                <span class="svc-card__price-label">À partir de</span>
-                                <span class="svc-card__price-value">2000€</span>
-                            </div>
-                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
-                        </div>
-                    </div>
-                </div>
-
-                {# Card 5 — Innovation #}
-                <div class="svc-card">
-                    <div class="svc-card__image">
-                        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80" alt="Innovation" loading="lazy">
-                    </div>
-                    <div class="svc-card__body">
-                        <h3 class="svc-card__name">Innovation & Digital</h3>
-                        <p class="svc-card__desc">Transformez vos idées en solutions concrètes grâce à notre accompagnement innovation.</p>
-                        <ul class="svc-card__features">
-                            <li>{{ check() }} Veille technologique</li>
-                            <li>{{ check() }} Design Thinking</li>
-                            <li>{{ check() }} Transformation digitale</li>
-                        </ul>
-                        <div class="svc-card__footer">
-                            <div class="svc-card__price">
-                                <span class="svc-card__price-label">À partir de</span>
-                                <span class="svc-card__price-value">3500€</span>
-                            </div>
-                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
-                        </div>
-                    </div>
-                </div>
-
-                {# Card 6 — Audit & Conformité #}
-                <div class="svc-card">
-                    <div class="svc-card__image">
-                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=600&q=80" alt="Audit & Conformité" loading="lazy">
-                    </div>
-                    <div class="svc-card__body">
-                        <h3 class="svc-card__name">Audit & Conformité</h3>
-                        <p class="svc-card__desc">Assurez votre conformité réglementaire et sécurisez vos activités durablement.</p>
-                        <ul class="svc-card__features">
-                            <li>{{ check() }} Diagnostic de conformité</li>
-                            <li>{{ check() }} RGPD & normes ISO</li>
-                            <li>{{ check() }} Plan de remédiation</li>
-                        </ul>
-                        <div class="svc-card__footer">
-                            <div class="svc-card__price">
-                                <span class="svc-card__price-label">À partir de</span>
-                                <span class="svc-card__price-value">1800€</span>
-                            </div>
-                            <a href="#" class="arrow-link">Réserver <span>&rarr;</span></a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <button class="section-toggle" id="svc-cards-toggle">
-                Voir plus <span>&darr;</span>
-            </button>
-        </div>
-    </section>
-
-    {# Notre approche — Reveal séquentiel au scroll #}
-    <section class="svc-process" id="svc-process">
-        <div class="svc-process__pin">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Notre Approche</h2>
-                    <p class="section-subtitle">Une méthodologie éprouvée en 4 étapes pour garantir votre succès</p>
-                </div>
-            </div>
-            <div class="svc-process__grid" id="svc-process-grid">
-                    <div class="svc-process__step svc-reveal">
-                        <div class="svc-process__number">01</div>
-                        <h3 class="svc-process__name">Diagnostic</h3>
-                        <p class="svc-process__desc">Nous analysons votre situation actuelle, vos objectifs et vos contraintes pour établir un état des lieux complet.</p>
-                    </div>
-                    <div class="svc-process__arrow svc-reveal">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="14 7 19 12 14 17"/></svg>
-                    </div>
-                    <div class="svc-process__step svc-reveal">
-                        <div class="svc-process__number">02</div>
-                        <h3 class="svc-process__name">Stratégie</h3>
-                        <p class="svc-process__desc">Nous élaborons ensemble une stratégie sur mesure, avec des objectifs clairs, mesurables et un planning réaliste.</p>
-                    </div>
-                    <div class="svc-process__arrow svc-reveal">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="14 7 19 12 14 17"/></svg>
-                    </div>
-                    <div class="svc-process__step svc-reveal">
-                        <div class="svc-process__number">03</div>
-                        <h3 class="svc-process__name">Exécution</h3>
-                        <p class="svc-process__desc">Notre équipe déploie les solutions avec rigueur et agilité, en vous tenant informé à chaque étape clé du projet.</p>
-                    </div>
-                    <div class="svc-process__arrow svc-reveal">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="14 7 19 12 14 17"/></svg>
-                    </div>
-                    <div class="svc-process__step svc-reveal">
-                        <div class="svc-process__number">04</div>
-                        <h3 class="svc-process__name">Suivi</h3>
-                        <p class="svc-process__desc">Nous mesurons les résultats, ajustons si nécessaire et garantissons un accompagnement sur le long terme.</p>
-                    </div>
+            <div class="svc-section__header reveal">
+                <span class="svc-section__label">IMPLANTOLOGIE CAPILLAIRE</span>
+                <h2 class="svc-section__title">Retrouvez une chevelure dense et naturelle</h2>
             </div>
         </div>
     </section>
 
+    {# Greffe FUE — slider gauche, texte droite #}
+    <section class="svc-row">
+        <div class="container">
+            <div class="svc-row__grid">
+                <div class="svc-row__media reveal reveal--left">
+                    <div class="ba-slider" data-ba-slider>
+                        <span class="ba-slider__tag ba-slider__tag--before">Avant</span>
+                        <span class="ba-slider__tag ba-slider__tag--after">Après</span>
+                        <img class="ba-slider__after" src="{{ asset('images/ba/greffe-fue-apres.jpeg') }}" alt="Après greffe FUE" loading="lazy">
+                        <div class="ba-slider__before">
+                            <img src="{{ asset('images/ba/greffe-fue-avant.jpeg') }}" alt="Avant greffe FUE" loading="lazy">
+                        </div>
+                        <div class="ba-slider__handle" aria-label="Glisser pour comparer">
+                            <div class="ba-slider__line"></div>
+                            <div class="ba-slider__circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="svc-row__content reveal reveal--right">
+                    <h3 class="svc-row__name">Greffe FUE</h3>
+                    <p class="svc-row__desc">Technique d'extraction folliculaire unitaire — les greffons sont prélevés un par un depuis la zone donneuse. Résultat ultra-naturel, cicatrices invisibles et récupération rapide.</p>
+                    <ul class="svc-row__list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Cicatrices imperceptibles</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Récupération en 7 à 10 jours</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Résultat définitif et naturel</li>
+                    </ul>
+                    <a href="#" class="arrow-link">PRENDRE RENDEZ-VOUS <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Technique DHI — texte gauche, slider droite #}
+    <section class="svc-row svc-row--reversed svc-row--alt">
+        <div class="container">
+            <div class="svc-row__grid">
+                <div class="svc-row__media reveal reveal--right">
+                    <div class="ba-slider" data-ba-slider>
+                        <span class="ba-slider__tag ba-slider__tag--before">Avant</span>
+                        <span class="ba-slider__tag ba-slider__tag--after">Après</span>
+                        <img class="ba-slider__after" src="{{ asset('images/ba/dhi-apres.jpeg') }}" alt="Après technique DHI" loading="lazy">
+                        <div class="ba-slider__before">
+                            <img src="{{ asset('images/ba/dhi-avant.jpeg') }}" alt="Avant technique DHI" loading="lazy">
+                        </div>
+                        <div class="ba-slider__handle" aria-label="Glisser pour comparer">
+                            <div class="ba-slider__line"></div>
+                            <div class="ba-slider__circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="svc-row__content reveal reveal--left">
+                    <h3 class="svc-row__name">Technique DHI</h3>
+                    <p class="svc-row__desc">Implantation directe au stylo Choi sans incision préalable. Cette technique de dernière génération offre une densité maximale et un contrôle précis de l'angle et la direction de chaque greffon.</p>
+                    <ul class="svc-row__list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Densité maximale garantie</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Sans rasage de la zone receveuse</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Repousse visible dès 4 mois</li>
+                    </ul>
+                    <a href="#" class="arrow-link">PRENDRE RENDEZ-VOUS <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Greffe de Barbe — slider gauche, texte droite #}
+    <section class="svc-row">
+        <div class="container">
+            <div class="svc-row__grid">
+                <div class="svc-row__media reveal reveal--left">
+                    <div class="ba-slider" data-ba-slider>
+                        <span class="ba-slider__tag ba-slider__tag--before">Avant</span>
+                        <span class="ba-slider__tag ba-slider__tag--after">Après</span>
+                        <img class="ba-slider__after" src="https://images.unsplash.com/photo-1621607505426-5e3f1e1b253b?auto=format&fit=crop&w=800&q=80" alt="Après greffe barbe" loading="lazy">
+                        <div class="ba-slider__before">
+                            <img src="https://images.unsplash.com/photo-1596496050827-8299e0220de1?auto=format&fit=crop&w=800&q=80" alt="Avant greffe barbe" loading="lazy">
+                        </div>
+                        <div class="ba-slider__handle" aria-label="Glisser pour comparer">
+                            <div class="ba-slider__line"></div>
+                            <div class="ba-slider__circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="svc-row__content reveal reveal--right">
+                    <h3 class="svc-row__name">Greffe de Barbe</h3>
+                    <p class="svc-row__desc">Comblez les zones clairsemées de votre barbe grâce à la micro-greffe folliculaire. Un résultat dense, homogène et masculin pour une barbe qui vous ressemble.</p>
+                    <ul class="svc-row__list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Barbe dense et naturelle</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Correction des zones sans poils</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Résultat permanent</li>
+                    </ul>
+                    <a href="#" class="arrow-link">PRENDRE RENDEZ-VOUS <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# ============================================
+       DENTISTERIE ESTHÉTIQUE — titre
+       ============================================ #}
+    <section class="svc-section svc-section--alt" id="dentaire">
+        <div class="container">
+            <div class="svc-section__header reveal">
+                <span class="svc-section__label">DENTISTERIE ESTHÉTIQUE</span>
+                <h2 class="svc-section__title">Révélez votre plus beau sourire</h2>
+            </div>
+        </div>
+    </section>
+
+    {# Facettes Dentaires — slider gauche, texte droite #}
+    <section class="svc-row svc-row--alt">
+        <div class="container">
+            <div class="svc-row__grid">
+                <div class="svc-row__media reveal reveal--left">
+                    <div class="ba-slider ba-slider--landscape" data-ba-slider>
+                        <span class="ba-slider__tag ba-slider__tag--before">Avant</span>
+                        <span class="ba-slider__tag ba-slider__tag--after">Après</span>
+                        <img class="ba-slider__after" src="{{ asset('images/ba/facettes-apres.jpeg') }}" alt="Après facettes" loading="lazy">
+                        <div class="ba-slider__before">
+                            <img src="{{ asset('images/ba/facettes-avant.jpeg') }}" alt="Avant facettes" loading="lazy">
+                        </div>
+                        <div class="ba-slider__handle" aria-label="Glisser pour comparer">
+                            <div class="ba-slider__line"></div>
+                            <div class="ba-slider__circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="svc-row__content reveal reveal--right">
+                    <h3 class="svc-row__name">Facettes Dentaires</h3>
+                    <p class="svc-row__desc">De fines pellicules en céramique collées sur la face visible des dents. Idéales pour corriger la teinte, la forme ou l'alignement de votre sourire sans abîmer l'émail originel.</p>
+                    <ul class="svc-row__list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Résultat immédiat et naturel</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Correction des défauts d'alignement</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Teinte permanente qui ne jaunit pas</li>
+                    </ul>
+                    <a href="#" class="arrow-link">PRENDRE RENDEZ-VOUS <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Blanchiment — texte gauche, slider droite #}
+    <section class="svc-row svc-row--reversed">
+        <div class="container">
+            <div class="svc-row__grid">
+                <div class="svc-row__media reveal reveal--right">
+                    <div class="ba-slider ba-slider--landscape" data-ba-slider>
+                        <span class="ba-slider__tag ba-slider__tag--before">Avant</span>
+                        <span class="ba-slider__tag ba-slider__tag--after">Après</span>
+                        <img class="ba-slider__after" src="{{ asset('images/ba/blanchiment-apres.jpeg') }}" alt="Après blanchiment" loading="lazy">
+                        <div class="ba-slider__before">
+                            <img src="{{ asset('images/ba/blanchiment-avant.jpeg') }}" alt="Avant blanchiment" loading="lazy">
+                        </div>
+                        <div class="ba-slider__handle" aria-label="Glisser pour comparer">
+                            <div class="ba-slider__line"></div>
+                            <div class="ba-slider__circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="svc-row__content reveal reveal--left">
+                    <h3 class="svc-row__name">Blanchiment Professionnel</h3>
+                    <p class="svc-row__desc">Un blanchiment en cabinet ou à domicile pour retrouver un sourire éclatant. Nos traitements professionnels permettent de gagner jusqu'à 8 teintes en toute sécurité.</p>
+                    <ul class="svc-row__list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Jusqu'à 8 teintes plus clair</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Sans douleur ni sensibilité</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Résultat durable</li>
+                    </ul>
+                    <a href="#" class="arrow-link">PRENDRE RENDEZ-VOUS <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Alignement Dentaire — slider gauche, texte droite #}
+    <section class="svc-row svc-row--alt">
+        <div class="container">
+            <div class="svc-row__grid">
+                <div class="svc-row__media reveal reveal--left">
+                    <div class="ba-slider ba-slider--landscape" data-ba-slider>
+                        <span class="ba-slider__tag ba-slider__tag--before">Avant</span>
+                        <span class="ba-slider__tag ba-slider__tag--after">Après</span>
+                        <img class="ba-slider__after" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=80" alt="Après alignement" loading="lazy">
+                        <div class="ba-slider__before">
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80" alt="Avant alignement" loading="lazy">
+                        </div>
+                        <div class="ba-slider__handle" aria-label="Glisser pour comparer">
+                            <div class="ba-slider__line"></div>
+                            <div class="ba-slider__circle">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="svc-row__content reveal reveal--right">
+                    <h3 class="svc-row__name">Alignement Dentaire</h3>
+                    <p class="svc-row__desc">Des gouttières transparentes sur mesure pour corriger l'alignement de vos dents en toute discrétion. Une solution invisible, confortable et progressive.</p>
+                    <ul class="svc-row__list">
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Gouttières 100% invisibles</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Alignement progressif et discret</li>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Confort au quotidien</li>
+                    </ul>
+                    <a href="#" class="arrow-link">PRENDRE RENDEZ-VOUS <span>&rarr;</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Before/After Slider JS #}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            if (typeof gsap === 'undefined' || window.innerWidth < 769) return;
+            var sliders = document.querySelectorAll('[data-ba-slider]');
+            sliders.forEach(function (slider) {
+                var handle = slider.querySelector('.ba-slider__handle');
+                var beforeWrap = slider.querySelector('.ba-slider__before');
+                var isDragging = false;
 
-            gsap.registerPlugin(ScrollTrigger);
-
-            var items = document.querySelectorAll('.svc-reveal');
-            var pin = document.querySelector('.svc-process__pin');
-            if (!items.length || !pin) return;
-
-            /* Hauteur du header fixe */
-            var headerH = document.getElementById('site-header') ? document.getElementById('site-header').offsetHeight : 0;
-
-            /* Timeline liée au scroll */
-            var tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: '#svc-process',
-                    pin: pin,
-                    pinSpacing: true,
-                    start: 'top ' + headerH,
-                    end: '+=' + (items.length * 300),
-                    scrub: 0.8,
-                    anticipatePin: 1
+                function setPosition(x) {
+                    var rect = slider.getBoundingClientRect();
+                    var pct = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+                    handle.style.left = (pct * 100) + '%';
+                    beforeWrap.style.clipPath = 'inset(0 ' + ((1 - pct) * 100) + '% 0 0)';
                 }
-            });
 
-            /* Chaque élément apparaît un par un */
-            items.forEach(function (item, i) {
-                tl.fromTo(item,
-                    { opacity: 0, scale: 0.85, y: 20 },
-                    { opacity: 1, scale: 1, y: 0, duration: 1, ease: 'power2.out' }
-                );
-                /* Petite pause entre chaque */
-                if (i < items.length - 1) {
-                    tl.to({}, { duration: 0.3 });
-                }
+                handle.addEventListener('mousedown', function (e) {
+                    e.preventDefault();
+                    isDragging = true;
+                    slider.classList.add('is-dragging');
+                });
+
+                handle.addEventListener('touchstart', function (e) {
+                    isDragging = true;
+                    slider.classList.add('is-dragging');
+                }, { passive: true });
+
+                window.addEventListener('mousemove', function (e) {
+                    if (!isDragging) return;
+                    setPosition(e.clientX);
+                });
+
+                window.addEventListener('touchmove', function (e) {
+                    if (!isDragging) return;
+                    setPosition(e.touches[0].clientX);
+                }, { passive: true });
+
+                window.addEventListener('mouseup', function () {
+                    isDragging = false;
+                    slider.classList.remove('is-dragging');
+                });
+
+                window.addEventListener('touchend', function () {
+                    isDragging = false;
+                    slider.classList.remove('is-dragging');
+                });
+
+                slider.addEventListener('click', function (e) {
+                    if (!isDragging) setPosition(e.clientX);
+                });
             });
         });
     </script>
-
-    {# CTA final #}
-    <section class="svc-cta" data-scroll-top-light>
-        <div class="container">
-            <div class="svc-cta__inner reveal">
-                <h2 class="svc-cta__title">Prêt à transformer votre entreprise ?</h2>
-                <p class="svc-cta__desc">Discutons ensemble de vos projets. Notre équipe est prête à vous accompagner vers le succès.</p>
-                <div class="svc-cta__actions">
-                    <a href="#" class="btn btn--white">Prendre rendez-vous</a>
-                    <a href="tel:+33123456789" class="btn btn--outline-dark">+33 1 23 45 67 89</a>
-                </div>
-            </div>
-        </div>
-    </section>
 {% endblock %}
