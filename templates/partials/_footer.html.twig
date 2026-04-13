@@ -10,16 +10,6 @@
                     <a href="{{ path('app_home') }}" class="footer__brand">
                         <img src="{{ asset('images/logo.png') }}" alt="Alliance Esthetic" class="footer__logo">
                     </a>
-                    <p class="footer__desc">
-                        Votre clinique spécialisée en implantologie capillaire et dentisterie esthétique.
-                        Des résultats naturels et durables, une équipe médicale certifiée depuis 2014.
-                    </p>
-                    <div class="footer__social footer__social--desktop">
-                        <a href="#" aria-label="Facebook">{{ facebook() }}</a>
-                        <a href="#" aria-label="Instagram">{{ instagram() }}</a>
-                        <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
-                        <a href="#" aria-label="Twitter">{{ twitter() }}</a>
-                    </div>
                 </div>
 
                 {# Colonne 2 : Liens rapides #}
@@ -68,6 +58,12 @@
                         </iframe>
                     </div>
                 </div>
+            </div>
+            <div class="footer__social-bar">
+                <a href="#" aria-label="Facebook">{{ facebook() }}</a>
+                <a href="#" aria-label="Instagram">{{ instagram() }}</a>
+                <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+                <a href="#" aria-label="Twitter">{{ twitter() }}</a>
             </div>
         </div>
     </div>
