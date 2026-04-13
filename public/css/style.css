@@ -1081,8 +1081,10 @@ ul {
    ============================================ */
 .testimonials {
     padding: 80px 0 90px;
-    background-color: #f8fafc;
+    background-color: #f4f9fc;
     overflow: hidden;
+    border-top: 1px solid #d0e8f3;
+    border-bottom: 1px solid #d0e8f3;
 }
 
 /* Version pinned (locomotive scroll) */
