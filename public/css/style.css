@@ -2737,7 +2737,8 @@ ul {
 
 .svc-section--alt {
     padding-top: 40px;
-    background: #f8fafc;
+    background: #f4f9fc;
+    border-top: 1px solid #d0e8f3;
 }
 
 .svc-section__header {
@@ -2770,7 +2771,13 @@ ul {
 }
 
 .svc-row--alt {
-    background: #f8fafc;
+    background: #f4f9fc;
+    border-top: 1px solid #d0e8f3;
+    border-bottom: 1px solid #d0e8f3;
+}
+
+.svc-section--alt + .svc-row--alt {
+    border-top: none;
 }
 
 .svc-row__grid {
