@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
-use App\Entity\Reservation;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -22,7 +21,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('<img src="/images/logo-header.png" style="height:48px;"> Alliance Esthetic')
+            ->setTitle('<img src="/images/logo-header.png" style="width:100%;max-width:200px;height:auto;display:block;">')
             ->setFaviconPath('/favicon.ico')
             ->renderContentMaximized();
     }
@@ -31,7 +30,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
         yield MenuItem::section('Réservations');
-        yield MenuItem::linkToCrud('Toutes les réservations', 'fa fa-calendar', Reservation::class);
+        yield MenuItem::linkTo(ReservationCrudController::class, 'Calendrier', 'fa fa-calendar')->setAction('index');
         yield MenuItem::section('Site');
         yield MenuItem::linkToUrl('Voir le site', 'fa fa-globe', '/');
     }

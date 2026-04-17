@@ -415,7 +415,7 @@ ul {
 .site-header.is-scrolled .navbar__cta {
     background-color: #6ab1d9;
     color: #fff;
-    border-color: #D4B896;
+    border-color: #6ab1d9;
 }
 
 .site-header.is-scrolled .navbar__cta:hover {
@@ -2756,7 +2756,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #C4973B;
+    color: #6ab1d9;
     backdrop-filter: blur(4px);
 }
 

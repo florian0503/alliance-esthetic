@@ -52,6 +52,7 @@
         font-size: 0.82rem;
         font-weight: 600;
         color: #94a3b8;
+        white-space: nowrap;
     }
 
     .res-step.is-active .res-step__num { background: #6ab1d9; color: #fff; }
@@ -73,10 +74,8 @@
     }
 
     .reservation-layout {
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 32px;
-        align-items: start;
+        max-width: 900px;
+        margin: 0 auto;
     }
 
     /* Calendar card */
@@ -211,10 +210,12 @@
     .res-horaire-item span:last-child { font-weight: 600; color: #111; }
 
     @media (max-width: 768px) {
-        .reservation-layout { grid-template-columns: 1fr; }
-        .reservation-sidebar { order: -1; }
         .res-step__label { display: none; }
-        .calendar-card__body { padding: 12px; }
+        .calendar-card__body { padding: 10px; }
+
+        .fc .fc-timegrid-slot { height: 60px; }
+        .fc .fc-event { min-height: 54px; }
+        .fc .fc-toolbar-title { font-size: 0.9rem; }
     }
 </style>
 {% endblock %}
@@ -269,29 +270,6 @@
                 </div>
             </div>
 
-            <div class="reservation-sidebar">
-                <div class="res-info-card">
-                    <p class="res-info-card__title">Nos horaires</p>
-                    <div class="res-horaires">
-                        <div class="res-horaire-item">
-                            <span>Lundi – Vendredi</span>
-                            <span>9h – 17h</span>
-                        </div>
-                        <div class="res-horaire-item">
-                            <span>Samedi</span>
-                            <span>Fermé</span>
-                        </div>
-                        <div class="res-horaire-item">
-                            <span>Dimanche</span>
-                            <span>Fermé</span>
-                        </div>
-                        <div class="res-horaire-item">
-                            <span>Durée consultation</span>
-                            <span>1 heure</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </div>
@@ -306,21 +284,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var takenSlots = [];
 
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
     function isTaken(dateStr, hour) {
-        return takenSlots.some(function (s) { return s.date === dateStr && s.hour === hour; });
+        var heureLabel = pad(hour) + 'h – ' + pad(hour + 1) + 'h';
+        return takenSlots.some(function (s) {
+            return s.date === dateStr && s.heure === heureLabel;
+        });
     }
 
-    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function localDateStr(d) {
+        return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    }
+
+    function nextWorkday() {
+        var d = new Date();
+        d.setDate(d.getDate() + 1);
+        while (d.getDay() === 0 || d.getDay() === 6) {
+            d.setDate(d.getDate() + 1);
+        }
+        return d;
+    }
 
     function generateEvents(start, end) {
         var events = [];
+        var now = new Date();
+        var tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0);
+        var minDateStr = localDateStr(tomorrow);
+
         var cur = new Date(start);
         while (cur <= new Date(end)) {
             var day = cur.getDay();
             if (day >= 1 && day <= 5) {
-                var dateStr = cur.toISOString().split('T')[0];
+                var dateStr = localDateStr(cur);
                 for (var h = 9; h < 17; h++) {
-                    var taken = isTaken(dateStr, h);
+                    var tooSoon = dateStr < minDateStr;
+                    var taken = tooSoon || isTaken(dateStr, h);
                     events.push({
                         title: '',
                         start: dateStr + 'T' + pad(h) + ':00:00',
@@ -335,11 +336,22 @@ document.addEventListener('DOMContentLoaded', function () {
         return events;
     }
 
+    var isMobile = window.innerWidth < 768;
+
     var calendar = new FullCalendar.Calendar(document.getElementById('reservation-calendar'), {
         locale: 'fr',
-        initialView: 'timeGridWeek',
+        initialView: isMobile ? 'timeGridDay' : 'timeGridWeek',
         headerToolbar: { left: 'prev,next today', center: 'title', right: '' },
         hiddenDays: [0, 6],
+        windowResize: function (view) {
+            var shouldBeDay = window.innerWidth < 768;
+            var currentView = calendar.view.type;
+            if (shouldBeDay && currentView !== 'timeGridDay') {
+                calendar.changeView('timeGridDay');
+            } else if (!shouldBeDay && currentView !== 'timeGridWeek') {
+                calendar.changeView('timeGridWeek');
+            }
+        },
         slotMinTime: '09:00:00',
         slotMaxTime: '17:00:00',
         slotDuration: '01:00:00',
@@ -349,9 +361,18 @@ document.addEventListener('DOMContentLoaded', function () {
         height: 'auto',
         nowIndicator: true,
         displayEventTime: false,
-        validRange: { start: new Date().toISOString().split('T')[0] },
+        initialDate: localDateStr(nextWorkday()),
+        validRange: { start: localDateStr(nextWorkday()) },
         events: function (info, successCallback) {
-            successCallback(generateEvents(info.start, info.end));
+            fetch('/reservation/slots')
+                .then(function (r) { return r.json(); })
+                .then(function (data) {
+                    takenSlots = data;
+                    successCallback(generateEvents(info.start, info.end));
+                })
+                .catch(function () {
+                    successCallback(generateEvents(info.start, info.end));
+                });
         },
         eventContent: function (arg) {
             var taken = arg.event.extendedProps.taken;
@@ -369,7 +390,8 @@ document.addEventListener('DOMContentLoaded', function () {
             var MONTHS = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
             var dateLabel  = DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
             var heureLabel = pad(ep.hour) + 'h – ' + pad(ep.hour + 1) + 'h';
-            window.location.href = '/reservation/confirmer?date=' + encodeURIComponent(dateLabel) + '&heure=' + encodeURIComponent(heureLabel);
+            var dateIso    = ep.dateStr;
+            window.location.href = '/reservation/confirmer?date=' + encodeURIComponent(dateLabel) + '&heure=' + encodeURIComponent(heureLabel) + '&date_iso=' + encodeURIComponent(dateIso);
         },
         eventDidMount: function (info) {
             if (info.event.extendedProps.taken) info.el.style.cursor = 'not-allowed';
@@ -378,6 +400,43 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     calendar.render();
+
+    if (isMobile) {
+        var calBody = document.querySelector('.calendar-card__body');
+        if (calBody) {
+            var pickerRow = document.createElement('div');
+            pickerRow.style.cssText = 'display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 14px;background:#f0f7fc;border-radius:10px;';
+
+            var label = document.createElement('span');
+            label.textContent = 'Aller au :';
+            label.style.cssText = 'font-size:0.85rem;font-weight:600;color:#475569;white-space:nowrap;';
+
+            var datePicker = document.createElement('input');
+            datePicker.type = 'date';
+            datePicker.style.cssText = 'flex:1;padding:8px 12px;border:1px solid #d0e8f3;border-radius:8px;font-size:0.9rem;font-family:inherit;color:#111;background:#fff;';
+            var minWork = nextWorkday();
+            datePicker.min = localDateStr(minWork);
+            datePicker.value = localDateStr(minWork);
+
+            pickerRow.appendChild(label);
+            pickerRow.appendChild(datePicker);
+            calBody.insertBefore(pickerRow, calBody.firstChild);
+
+            datePicker.addEventListener('change', function () {
+                if (datePicker.value) {
+                    var picked = new Date(datePicker.value + 'T12:00:00');
+                    var dow = picked.getDay();
+                    if (dow === 0 || dow === 6) {
+                        while (picked.getDay() === 0 || picked.getDay() === 6) {
+                            picked.setDate(picked.getDate() + 1);
+                        }
+                        datePicker.value = localDateStr(picked);
+                    }
+                    calendar.gotoDate(datePicker.value);
+                }
+            });
+        }
+    }
 });
 </script>
 {% endblock %}

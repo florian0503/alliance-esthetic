@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Entity\Reservation;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
+use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\BadgeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -20,9 +21,14 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\ChoiceFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\DateTimeFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminRoute;
+use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ReservationCrudController extends AbstractCrudController
 {
+    public function __construct(private AdminUrlGenerator $adminUrlGenerator) {}
+
     public static function getEntityFqcn(): string
     {
         return Reservation::class;
@@ -42,11 +48,10 @@ class ReservationCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id', '#')->onlyOnIndex();
-
         yield TextField::new('prenom', 'Prénom');
         yield TextField::new('nom', 'Nom');
         yield EmailField::new('email', 'Email');
-        yield TelephoneField::new('telephone', 'Téléphone')->hideOnIndex();
+        yield TelephoneField::new('telephone', 'Téléphone');
 
         yield DateField::new('dateRdv', 'Date RDV')
             ->setFormat('EEEE d MMMM yyyy');
@@ -55,9 +60,9 @@ class ReservationCrudController extends AbstractCrudController
 
         yield ChoiceField::new('statut', 'Statut')
             ->setChoices([
-                'En attente'  => 'en_attente',
-                'Confirmé'    => 'confirme',
-                'Annulé'      => 'annule',
+                'En attente' => 'en_attente',
+                'Confirmé'   => 'confirme',
+                'Annulé'     => 'annule',
             ])
             ->renderAsBadges([
                 'en_attente' => 'warning',
@@ -72,11 +77,35 @@ class ReservationCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
+        $valider = Action::new('valider', 'Valider', 'fa fa-check')
+            ->addCssClass('btn btn-success')
+            ->displayIf(fn (Reservation $r) => $r->getStatut() !== 'confirme')
+            ->linkToCrudAction('validerReservation');
+
         return $actions
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            ->add(Crud::PAGE_INDEX, $valider)
             ->update(Crud::PAGE_INDEX, Action::DETAIL, fn (Action $a) => $a->setIcon('fa fa-eye')->setLabel(''))
             ->update(Crud::PAGE_INDEX, Action::EDIT, fn (Action $a) => $a->setIcon('fa fa-pen')->setLabel(''))
             ->update(Crud::PAGE_INDEX, Action::DELETE, fn (Action $a) => $a->setIcon('fa fa-trash')->setLabel(''));
+    }
+
+    #[AdminRoute('/reservation/valider', name: 'reservation_valider')]
+    public function validerReservation(AdminContext $context, EntityManagerInterface $em): RedirectResponse
+    {
+        /** @var Reservation $reservation */
+        $reservation = $context->getEntity()->getInstance();
+        $reservation->setStatut('confirme');
+        $em->flush();
+
+        $this->addFlash('success', 'Réservation de ' . $reservation->getNomComplet() . ' confirmée.');
+
+        $url = $this->adminUrlGenerator
+            ->setController(self::class)
+            ->setAction(Action::INDEX)
+            ->generateUrl();
+
+        return $this->redirect($url);
     }
 
     public function configureFilters(Filters $filters): Filters

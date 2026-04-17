@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alliance Esthetic — Administration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f0f0f;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-logo img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        .login-card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            padding: 36px 32px;
+        }
+
+        .login-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .login-subtitle {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            margin-bottom: 28px;
+        }
+
+        .login-error {
+            background: rgba(239,68,68,0.1);
+            border: 1px solid rgba(239,68,68,0.3);
+            color: #fca5a5;
+            font-size: 0.85rem;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .login-group {
+            margin-bottom: 18px;
+        }
+
+        .login-label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .login-input {
+            width: 100%;
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .login-input:focus { border-color: #6ab1d9; }
+        .login-input::placeholder { color: #475569; }
+
+        .login-btn {
+            width: 100%;
+            background: #6ab1d9;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+
+        .login-btn:hover { background: #5a9fc7; }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-logo">
+            <img src="/images/logo-header.png" alt="Alliance Esthetic">
+        </div>
+
+        <div class="login-card">
+            <p class="login-title">Espace administration</p>
+            <p class="login-subtitle">Connectez-vous pour gérer les réservations.</p>
+
+            {% if error %}
+                <div class="login-error">Identifiant ou mot de passe incorrect.</div>
+            {% endif %}
+
+            <form method="POST" action="{{ path('app_login') }}">
+                <div class="login-group">
+                    <label class="login-label" for="email">Identifiant</label>
+                    <input type="text" id="email" name="email" class="login-input"
+                           value="{{ last_username }}" autocomplete="username" autofocus
+                           placeholder="admin">
+                </div>
+                <div class="login-group">
+                    <label class="login-label" for="password">Mot de passe</label>
+                    <input type="password" id="password" name="password" class="login-input"
+                           autocomplete="current-password" placeholder="••••••••">
+                </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <button type="submit" class="login-btn">Se connecter</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
