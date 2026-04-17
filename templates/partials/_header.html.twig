@@ -38,13 +38,33 @@
         </button>
 
         {% set current_route = app.request.attributes.get('_route') ?? '' %}
-        <ul class="navbar__menu" id="navbar-menu">
-            <li><a href="{{ path('app_home') }}" class="navbar__link{{ current_route == 'app_home' ? ' navbar__link--active' : '' }}">Accueil</a></li>
-            <li><a href="{{ path('app_services') }}" class="navbar__link{{ current_route == 'app_services' ? ' navbar__link--active' : '' }}">Services</a></li>
-            <li><a href="{{ path('app_assurance') }}" class="navbar__link{{ current_route == 'app_assurance' ? ' navbar__link--active' : '' }}">Assurance</a></li>
-            <li><a href="{{ path('app_contact') }}" class="navbar__link{{ current_route == 'app_contact' ? ' navbar__link--active' : '' }}">Contact</a></li>
-            <li class="navbar__cta-mobile"><a href="#" class="navbar__cta">Réserver en ligne</a></li>
-        </ul>
+        <div class="navbar__mobile-overlay" id="navbar-overlay" aria-hidden="true"></div>
+        <div class="navbar__menu" id="navbar-menu">
+            <ul class="navbar__menu-links">
+                <li><a href="{{ path('app_home') }}" class="navbar__link{{ current_route == 'app_home' ? ' navbar__link--active' : '' }}">Accueil</a></li>
+                <li><a href="{{ path('app_services') }}" class="navbar__link{{ current_route == 'app_services' ? ' navbar__link--active' : '' }}">Services</a></li>
+                <li><a href="{{ path('app_assurance') }}" class="navbar__link{{ current_route == 'app_assurance' ? ' navbar__link--active' : '' }}">Assurance</a></li>
+                <li><a href="{{ path('app_contact') }}" class="navbar__link{{ current_route == 'app_contact' ? ' navbar__link--active' : '' }}">Contact</a></li>
+            </ul>
+            <div class="navbar__menu-footer">
+                <a href="#" class="navbar__cta navbar__cta--mobile-menu">Réserver en ligne</a>
+                <div class="navbar__menu-contact">
+                    <a href="tel:+33123456789">
+                        {{ phone() }}
+                        <span>+33 1 23 45 67 89</span>
+                    </a>
+                    <a href="mailto:contact@example.com">
+                        {{ email() }}
+                        <span>contact@example.com</span>
+                    </a>
+                </div>
+                <div class="navbar__menu-social">
+                    <a href="#" aria-label="Facebook">{{ facebook() }}</a>
+                    <a href="#" aria-label="Instagram">{{ instagram() }}</a>
+                    <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+                </div>
+            </div>
+        </div>
 
         <a href="#" class="navbar__cta navbar__cta--desktop">Réserver en ligne</a>
     </div>
@@ -56,19 +76,37 @@
     document.addEventListener('DOMContentLoaded', function () {
         var toggle = document.querySelector('.navbar__toggle');
         var menu = document.getElementById('navbar-menu');
-
+        var overlay = document.getElementById('navbar-overlay');
         var header = document.getElementById('site-header');
+
+        function closeMenu() {
+            menu.classList.remove('is-open');
+            toggle.classList.remove('is-active');
+            header.classList.remove('menu-open');
+            overlay.classList.remove('is-visible');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
 
         if (toggle && menu && header) {
             toggle.addEventListener('click', function () {
                 var isOpen = menu.classList.toggle('is-open');
                 toggle.classList.toggle('is-active', isOpen);
                 header.classList.toggle('menu-open', isOpen);
+                overlay.classList.toggle('is-visible', isOpen);
                 toggle.setAttribute('aria-expanded', String(isOpen));
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            if (overlay) {
+                overlay.addEventListener('click', closeMenu);
+            }
+
+            menu.querySelectorAll('.navbar__link').forEach(function (link) {
+                link.addEventListener('click', closeMenu);
             });
         }
 
-        /* Header transparent → blanc au scroll (uniquement page accueil) */
         if (header && header.dataset.transparent === '1') {
             var onScroll = function () {
                 header.classList.toggle('is-scrolled', window.scrollY > 80);
