@@ -1,0 +1,341 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alliance Esthetic — Confirmer votre rendez-vous{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .reservation-page {
+        background: #f8f7f5;
+        min-height: 100vh;
+        padding-bottom: 80px;
+    }
+
+    /* Steps */
+    .reservation-steps {
+        background: #fff;
+        border-bottom: 1px solid #e8e4df;
+    }
+
+    .reservation-steps__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .res-step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 24px;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .res-step__num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #e2e8f0;
+        color: #94a3b8;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .res-step__label {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #94a3b8;
+    }
+
+    .res-step.is-active .res-step__num { background: #6ab1d9; color: #fff; }
+    .res-step.is-active .res-step__label { color: #111; }
+    .res-step.is-done .res-step__num { background: #22c55e; color: #fff; }
+    .res-step.is-done .res-step__label { color: #64748b; }
+
+    .res-step__sep {
+        width: 32px;
+        height: 1px;
+        background: #e2e8f0;
+        flex-shrink: 0;
+    }
+
+    /* Layout */
+    .reservation-body {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .reservation-layout {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 32px;
+        align-items: start;
+    }
+
+    /* Confirm card */
+    .confirm-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        overflow: hidden;
+    }
+
+    .confirm-card__head {
+        background: #fff;
+        padding: 24px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #f1f0ee;
+    }
+
+    .confirm-card__head-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #6ab1d9;
+    }
+
+    .confirm-card__slot {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(106,177,217,0.1);
+        border: 1px solid rgba(106,177,217,0.3);
+        color: #6ab1d9;
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 7px 14px;
+        border-radius: 50px;
+    }
+
+    .confirm-card__body {
+        padding: 32px;
+    }
+
+
+    /* Sidebar */
+    .reservation-sidebar { display: flex; flex-direction: column; gap: 20px; }
+
+    .res-info-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        padding: 24px;
+    }
+
+    .res-info-card__title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #f1f0ee;
+    }
+
+    .res-slot-recap {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .res-slot-recap__item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.85rem;
+        color: #475569;
+    }
+
+    .res-slot-recap__icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: rgba(106,177,217,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: #6ab1d9;
+    }
+
+    .res-slot-recap__item strong {
+        display: block;
+        color: #111;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .res-horaires { display: flex; flex-direction: column; gap: 8px; }
+
+    .res-horaire-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.83rem;
+        color: #64748b;
+        padding: 6px 0;
+        border-bottom: 1px solid #f8f7f5;
+    }
+
+    .res-horaire-item span:last-child { font-weight: 600; color: #111; }
+
+    @media (max-width: 768px) {
+        .reservation-layout { grid-template-columns: 1fr; }
+        .reservation-sidebar { order: -1; }
+        .res-step__label { display: none; }
+        .confirm-form__row { grid-template-columns: 1fr; }
+        .confirm-card__body { padding: 24px 20px; }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="reservation-page">
+
+    <section class="page-banner">
+        <div class="page-banner__content">
+            <h1 class="page-banner__title">Réservez votre consultation</h1>
+            <p class="page-banner__subtitle">Choisissez le créneau qui vous convient — réponse de confirmation sous 24h</p>
+            <div class="page-banner__breadcrumb">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <span>/</span>
+                <a href="{{ path('app_reservation') }}">Réservation</a>
+                <span>/</span>
+                <span>Confirmation</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="reservation-steps">
+        <div class="reservation-steps__inner">
+            <div class="res-step is-done">
+                <div class="res-step__num">✓</div>
+                <span class="res-step__label">Choisir un créneau</span>
+            </div>
+            <div class="res-step__sep"></div>
+            <div class="res-step is-active">
+                <div class="res-step__num">2</div>
+                <span class="res-step__label">Vos informations</span>
+            </div>
+            <div class="res-step__sep"></div>
+            <div class="res-step">
+                <div class="res-step__num">3</div>
+                <span class="res-step__label">Confirmation</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="reservation-body">
+        <div class="reservation-layout">
+
+            <div class="confirm-card">
+                <div class="confirm-card__head">
+                    <span class="confirm-card__head-title">Vos informations</span>
+                    <span class="confirm-card__slot">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="13" height="13">
+                            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        {{ date }} — {{ heure }}
+                    </span>
+                </div>
+                <div class="confirm-card__body">
+                    <form id="confirm-form" class="contact-form" method="POST" action="{{ path('app_reservation_confirmer', {'date': date, 'heure': heure}) }}">
+                        <input type="hidden" name="date" value="{{ date }}">
+                        <input type="hidden" name="heure" value="{{ heure }}">
+
+                        <div class="contact-form__row">
+                            <div class="contact-form__group">
+                                <label class="contact-form__label" for="prenom">Prénom <span class="contact-form__required">*</span></label>
+                                <input type="text" id="prenom" name="prenom" class="contact-form__input" placeholder="Votre prénom" required>
+                            </div>
+                            <div class="contact-form__group">
+                                <label class="contact-form__label" for="nom">Nom <span class="contact-form__required">*</span></label>
+                                <input type="text" id="nom" name="nom" class="contact-form__input" placeholder="Votre nom" required>
+                            </div>
+                        </div>
+
+                        <div class="contact-form__group">
+                            <label class="contact-form__label" for="email">Email <span class="contact-form__required">*</span></label>
+                            <input type="email" id="email" name="email" class="contact-form__input" placeholder="votre@email.com" required>
+                        </div>
+
+                        <div class="contact-form__group">
+                            <label class="contact-form__label" for="tel">Téléphone</label>
+                            <input type="tel" id="tel" name="tel" class="contact-form__input" placeholder="+33 6 00 00 00 00">
+                        </div>
+
+                        <div style="display:flex;gap:12px;margin-top:8px;">
+                            <a href="{{ path('app_reservation') }}" class="contact-form__submit" style="flex:1;text-decoration:none;background:transparent;color:#111;border:2px solid #111;">← Retour</a>
+                            <button type="submit" class="contact-form__submit" style="flex:2;">Confirmer le rendez-vous</button>
+                        </div>
+                        <p class="contact-form__disclaimer">* Champs obligatoires — Confirmation par email sous 24h</p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="reservation-sidebar">
+
+                <div class="res-info-card">
+                    <p class="res-info-card__title">Votre créneau</p>
+                    <div class="res-slot-recap">
+                        <div class="res-slot-recap__item">
+                            <div class="res-slot-recap__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                    <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>{{ date }}</strong>
+                                <span>Date du rendez-vous</span>
+                            </div>
+                        </div>
+                        <div class="res-slot-recap__item">
+                            <div class="res-slot-recap__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>{{ heure }}</strong>
+                                <span>Horaire</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="res-info-card">
+                    <p class="res-info-card__title">Nos horaires</p>
+                    <div class="res-horaires">
+                        <div class="res-horaire-item">
+                            <span>Lundi – Vendredi</span>
+                            <span>9h – 17h</span>
+                        </div>
+                        <div class="res-horaire-item">
+                            <span>Samedi</span>
+                            <span>Fermé</span>
+                        </div>
+                        <div class="res-horaire-item">
+                            <span>Dimanche</span>
+                            <span>Fermé</span>
+                        </div>
+                        <div class="res-horaire-item">
+                            <span>Durée consultation</span>
+                            <span>1 heure</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% endblock %}

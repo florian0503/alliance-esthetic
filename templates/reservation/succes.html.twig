@@ -1,0 +1,189 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alliance Esthetic — Rendez-vous confirmé{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .reservation-page {
+        background: #f8f7f5;
+        min-height: 100vh;
+        padding-bottom: 80px;
+    }
+
+    .reservation-steps {
+        background: #fff;
+        border-bottom: 1px solid #e8e4df;
+    }
+
+    .reservation-steps__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .res-step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 24px;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .res-step__num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #e2e8f0;
+        color: #94a3b8;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .res-step__label { font-size: 0.82rem; font-weight: 600; color: #94a3b8; }
+    .res-step.is-done .res-step__num { background: #22c55e; color: #fff; }
+    .res-step.is-done .res-step__label { color: #64748b; }
+
+    .res-step__sep { width: 32px; height: 1px; background: #e2e8f0; flex-shrink: 0; }
+
+    .succes-body {
+        max-width: 600px;
+        margin: 60px auto;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .succes-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        padding: 52px 40px;
+        border: 1px solid #e8e4de;
+    }
+
+    .succes-card__icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: rgba(34,197,94,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+    }
+
+    .succes-card__icon svg { color: #22c55e; }
+
+    .succes-card__title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 12px;
+    }
+
+    .succes-card__text {
+        font-size: 0.95rem;
+        color: #64748b;
+        line-height: 1.7;
+        margin-bottom: 32px;
+    }
+
+    .succes-card__slot {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(106,177,217,0.1);
+        border: 1px solid rgba(106,177,217,0.3);
+        color: #6ab1d9;
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 10px 20px;
+        border-radius: 50px;
+        margin-bottom: 36px;
+    }
+
+    .succes-card__actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) {
+        .succes-card { padding: 36px 24px; }
+        .res-step__label { display: none; }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="reservation-page">
+
+    <section class="page-banner">
+        <div class="page-banner__content">
+            <h1 class="page-banner__title">Réservez votre consultation</h1>
+            <p class="page-banner__subtitle">Choisissez le créneau qui vous convient — réponse de confirmation sous 24h</p>
+            <div class="page-banner__breadcrumb">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <span>/</span>
+                <a href="{{ path('app_reservation') }}">Réservation</a>
+                <span>/</span>
+                <span>Confirmé</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="reservation-steps">
+        <div class="reservation-steps__inner">
+            <div class="res-step is-done">
+                <div class="res-step__num">✓</div>
+                <span class="res-step__label">Choisir un créneau</span>
+            </div>
+            <div class="res-step__sep"></div>
+            <div class="res-step is-done">
+                <div class="res-step__num">✓</div>
+                <span class="res-step__label">Vos informations</span>
+            </div>
+            <div class="res-step__sep"></div>
+            <div class="res-step is-done">
+                <div class="res-step__num">✓</div>
+                <span class="res-step__label">Confirmation</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="succes-body">
+        <div class="succes-card">
+            <div class="succes-card__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+                    <polyline points="20 6 9 17 4 12"/>
+                </svg>
+            </div>
+            <h1 class="succes-card__title">Demande envoyée{% if prenom %}, {{ prenom }} !{% else %} !{% endif %}</h1>
+            <p class="succes-card__text">
+                Votre demande de rendez-vous a bien été enregistrée.<br>
+                Nous vous confirmons par email dans les <strong>24 heures</strong>.
+            </p>
+            {% if date and heure %}
+            <div class="succes-card__slot">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15">
+                    <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                {{ date }} — {{ heure }}
+            </div>
+            {% endif %}
+            <div class="succes-card__actions">
+                <a href="{{ path('app_home') }}" class="btn btn--outline-dark">Retour à l'accueil</a>
+                <a href="{{ path('app_services') }}" class="btn btn--dark">Découvrir nos soins</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
