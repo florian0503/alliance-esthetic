@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alliance Esthetic — Mentions légales{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .legal-content {
+        padding: 4rem 0 6rem;
+        background: #fafafa;
+    }
+    .legal-body {
+        max-width: 820px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 32px rgba(0,0,0,.07);
+        padding: 3rem 3.5rem;
+    }
+    .legal-body h2 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin: 2.5rem 0 .75rem;
+        padding-bottom: .4rem;
+        border-bottom: 2px solid #e8e0f5;
+    }
+    .legal-body h2:first-child { margin-top: 0; }
+    .legal-body p, .legal-body li {
+        color: #555;
+        line-height: 1.8;
+        font-size: .97rem;
+    }
+    .legal-body ul { padding-left: 1.4rem; margin: .5rem 0; }
+    .legal-body li { margin-bottom: .35rem; }
+    .legal-body a { color: #7c5cbf; text-decoration: underline; }
+    .legal-updated {
+        text-align: center;
+        color: #aaa;
+        font-size: .85rem;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #eee;
+    }
+    @media (max-width: 768px) {
+        .legal-body { padding: 2rem 1.25rem; }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <section class="page-banner">
+        <div class="page-banner__content">
+            <h1 class="page-banner__title">Mentions légales</h1>
+            <p class="page-banner__subtitle">Informations légales relatives au site Alliance Esthetic</p>
+            <div class="page-banner__breadcrumb">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <span>/</span>
+                <span>Mentions légales</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="legal-content">
+        <div class="container">
+            <div class="legal-body reveal">
+
+                <h2>1. Éditeur du site</h2>
+                <p>
+                    Le site <strong>alliance-esthetic.fr</strong> est édité par la société <strong>Alliance Esthetic</strong>,
+                    établissement spécialisé en esthétique médicale et dentisterie esthétique.
+                </p>
+                <ul>
+                    <li><strong>Dénomination sociale :</strong> Alliance Esthetic</li>
+                    <li><strong>Forme juridique :</strong> SASU</li>
+                    <li><strong>Siège social :</strong> 47 Boulevard Victor Hugo, 69006 Lyon, France</li>
+                    <li><strong>Téléphone :</strong> <a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+                    <li><strong>Email :</strong> <a href="mailto:contact@alliance-esthetic.fr">contact@alliance-esthetic.fr</a></li>
+                    <li><strong>Directeur de la publication :</strong> Le représentant légal d'Alliance Esthetic</li>
+                </ul>
+
+                <h2>2. Hébergement</h2>
+                <p>
+                    Ce site est hébergé par un prestataire d'hébergement professionnel. Pour toute question relative
+                    à l'hébergement, vous pouvez contacter Alliance Esthetic à l'adresse indiquée ci-dessus.
+                </p>
+
+                <h2>3. Propriété intellectuelle</h2>
+                <p>
+                    L'ensemble des éléments constituant ce site (textes, images, graphismes, logo, vidéos, sons, etc.)
+                    est la propriété exclusive d'Alliance Esthetic ou fait l'objet d'une autorisation d'utilisation.
+                    Toute reproduction, représentation, modification, publication ou adaptation totale ou partielle des
+                    éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation
+                    écrite préalable d'Alliance Esthetic.
+                </p>
+                <p>
+                    Toute exploitation non autorisée du site ou de ses éléments est considérée comme constitutive d'une
+                    contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code
+                    de la Propriété Intellectuelle.
+                </p>
+
+                <h2>4. Responsabilité</h2>
+                <p>
+                    Les informations contenues sur ce site sont aussi précises que possible et le site est périodiquement
+                    mis à jour. Cependant, Alliance Esthetic ne peut garantir l'exactitude, la complétude et l'actualité
+                    des informations diffusées sur ce site.
+                </p>
+                <p>
+                    Alliance Esthetic ne pourra être tenu responsable des dommages directs ou indirects pouvant résulter
+                    de l'accès au site ou de l'utilisation de son contenu. Les informations médicales publiées sur ce
+                    site ont un caractère informatif général et ne remplacent pas l'avis d'un professionnel de santé.
+                </p>
+
+                <h2>5. Liens hypertextes</h2>
+                <p>
+                    Le site peut contenir des liens vers d'autres sites internet. Alliance Esthetic n'exerce aucun
+                    contrôle sur ces sites et décline toute responsabilité quant à leur contenu. L'existence de ces
+                    liens ne signifie pas qu'Alliance Esthetic approuve ces sites ou leur contenu.
+                </p>
+
+                <h2>6. Droit applicable</h2>
+                <p>
+                    Le présent site et son contenu sont régis par le droit français. En cas de litige, les tribunaux
+                    français seront seuls compétents.
+                </p>
+
+                <p class="legal-updated">Dernière mise à jour : avril 2026</p>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

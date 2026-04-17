@@ -10,16 +10,6 @@
                     <a href="{{ path('app_home') }}" class="footer__brand">
                         <img src="{{ asset('images/logo.png') }}" alt="Alliance Esthetic" class="footer__logo">
                     </a>
-                    <p class="footer__desc">
-                        Votre clinique spécialisée en implantologie capillaire et dentisterie esthétique.
-                        Des résultats naturels et durables, une équipe médicale certifiée depuis 2014.
-                    </p>
-                    <div class="footer__social footer__social--desktop">
-                        <a href="#" aria-label="Facebook">{{ facebook() }}</a>
-                        <a href="#" aria-label="Instagram">{{ instagram() }}</a>
-                        <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
-                        <a href="#" aria-label="Twitter">{{ twitter() }}</a>
-                    </div>
                 </div>
 
                 {# Colonne 2 : Liens rapides #}
@@ -69,6 +59,11 @@
                     </div>
                 </div>
             </div>
+            <div class="footer__social-bar">
+                <a href="#" aria-label="Facebook">{{ facebook() }}</a>
+                <a href="#" aria-label="Instagram">{{ instagram() }}</a>
+                <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+            </div>
         </div>
     </div>
 
@@ -79,13 +74,12 @@
                 <a href="#" aria-label="Facebook">{{ facebook() }}</a>
                 <a href="#" aria-label="Instagram">{{ instagram() }}</a>
                 <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
-                <a href="#" aria-label="Twitter">{{ twitter() }}</a>
             </div>
             <p>&copy; 2026 Alliance Esthetic. Tous droits réservés. — Réalisé par <a href="https://entryweb.fr" target="_blank" rel="noopener noreferrer"><strong>EntryWeb</strong></a></p>
             <div class="footer__legal">
-                <a href="#">Mentions légales</a>
-                <a href="#">Politique de confidentialité</a>
-                <a href="#">CGV</a>
+                <a href="{{ path('app_mentions_legales') }}">Mentions légales</a>
+                <a href="{{ path('app_politique_confidentialite') }}">Politique de confidentialité</a>
+                <a href="{{ path('app_cgv') }}">CGV</a>
             </div>
         </div>
     </div>
