@@ -31,6 +31,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
         yield MenuItem::section('Réservations');
         yield MenuItem::linkTo(ReservationCrudController::class, 'Calendrier', 'fa fa-calendar')->setAction('index');
+        yield MenuItem::section('Messages');
+        yield MenuItem::linkTo(ContactMessageCrudController::class, 'Messages reçus', 'fa fa-envelope')->setAction('index');
         yield MenuItem::section('Site');
         yield MenuItem::linkToUrl('Voir le site', 'fa fa-globe', '/');
     }

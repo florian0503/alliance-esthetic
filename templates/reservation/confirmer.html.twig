@@ -202,6 +202,20 @@
         flex: 2;
     }
 
+    .confirm-flash {
+        margin: 0 0 20px;
+        padding: 14px 18px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        border: 1px solid transparent;
+    }
+
+    .confirm-flash--error {
+        background: rgba(239,68,68,0.08);
+        border-color: rgba(239,68,68,0.25);
+        color: #b91c1c;
+    }
+
     @media (max-width: 768px) {
         .reservation-layout { grid-template-columns: 1fr; }
         .reservation-sidebar { order: -1; }
@@ -272,10 +286,14 @@
                     </span>
                 </div>
                 <div class="confirm-card__body">
+                    {% if errors is defined and errors %}
+                        <div class="confirm-flash confirm-flash--error">Merci de remplir correctement tous les champs obligatoires (nom, prénom, email valide).</div>
+                    {% endif %}
                     <form id="confirm-form" class="contact-form" method="POST" action="{{ path('app_reservation_confirmer', {'date': date, 'heure': heure}) }}">
                         <input type="hidden" name="date" value="{{ date }}">
                         <input type="hidden" name="heure" value="{{ heure }}">
                         <input type="hidden" name="date_iso" value="{{ date_iso ?? '' }}">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('reservation_confirm') }}">
 
                         <div class="contact-form__row">
                             <div class="contact-form__group">

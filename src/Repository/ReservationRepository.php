@@ -24,4 +24,18 @@ class ReservationRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function existsForSlot(\DateTimeInterface $date, string $heureRdv): bool
+    {
+        $count = $this->createQueryBuilder('r')
+            ->select('COUNT(r.id)')
+            ->where('r.dateRdv = :d')
+            ->andWhere('r.heureRdv = :h')
+            ->setParameter('d', $date->format('Y-m-d'))
+            ->setParameter('h', $heureRdv)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return (int) $count > 0;
+    }
 }

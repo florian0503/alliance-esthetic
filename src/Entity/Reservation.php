@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 #[ORM\Table(name: 'reservation')]
+#[ORM\UniqueConstraint(name: 'uniq_reservation_date_heure', fields: ['dateRdv', 'heureRdv'])]
 class Reservation
 {
     #[ORM\Id]

@@ -217,6 +217,27 @@
         .fc .fc-event { min-height: 54px; }
         .fc .fc-toolbar-title { font-size: 0.9rem; }
     }
+
+    .reservation-flash {
+        max-width: 900px;
+        margin: 0 auto 20px;
+        padding: 14px 20px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        border: 1px solid transparent;
+    }
+
+    .reservation-flash--error {
+        background: rgba(239,68,68,0.08);
+        border-color: rgba(239,68,68,0.25);
+        color: #b91c1c;
+    }
+
+    .reservation-flash--info {
+        background: rgba(59,130,246,0.08);
+        border-color: rgba(59,130,246,0.22);
+        color: #1d4ed8;
+    }
 </style>
 {% endblock %}
 
@@ -255,6 +276,12 @@
     </div>
 
     <div class="reservation-body">
+        {% for msg in app.flashes('danger') %}
+            <div class="reservation-flash reservation-flash--error" role="alert">{{ msg }}</div>
+        {% endfor %}
+        {% for msg in app.flashes('info') %}
+            <div class="reservation-flash reservation-flash--info" role="status">{{ msg }}</div>
+        {% endfor %}
         <div class="reservation-layout">
 
             <div class="calendar-card">
@@ -280,6 +307,10 @@
 {% block javascripts %}
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 <script>
+window.__reservationUrls = {
+    slots: {{ path('app_reservation_slots')|json_encode|raw }},
+    confirmer: {{ path('app_reservation_confirmer')|json_encode|raw }}
+};
 document.addEventListener('DOMContentLoaded', function () {
 
     var takenSlots = [];
@@ -364,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function () {
         initialDate: localDateStr(nextWorkday()),
         validRange: { start: localDateStr(nextWorkday()) },
         events: function (info, successCallback) {
-            fetch('/reservation/slots')
+            fetch(window.__reservationUrls.slots)
                 .then(function (r) { return r.json(); })
                 .then(function (data) {
                     takenSlots = data;
@@ -391,7 +422,11 @@ document.addEventListener('DOMContentLoaded', function () {
             var dateLabel  = DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
             var heureLabel = pad(ep.hour) + 'h – ' + pad(ep.hour + 1) + 'h';
             var dateIso    = ep.dateStr;
-            window.location.href = '/reservation/confirmer?date=' + encodeURIComponent(dateLabel) + '&heure=' + encodeURIComponent(heureLabel) + '&date_iso=' + encodeURIComponent(dateIso);
+            var q = new URLSearchParams();
+            q.set('date', dateLabel);
+            q.set('heure', heureLabel);
+            q.set('date_iso', dateIso);
+            window.location.href = window.__reservationUrls.confirmer + '?' + q.toString();
         },
         eventDidMount: function (info) {
             if (info.event.extendedProps.taken) info.el.style.cursor = 'not-allowed';

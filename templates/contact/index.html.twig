@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% from 'partials/_icons.html.twig' import phone, email, location %}
+{% from 'partials/_icons.html.twig' import phone, email, location, snapchat, whatsapp %}
 
 {% block title %}Alliance Esthetic — Contact{% endblock %}
 
@@ -24,39 +24,46 @@
                 <div class="contact-form-card reveal reveal--left">
                     <h2 class="contact-form__title">Envoyez-nous un message</h2>
 
-                    <form class="contact-form" action="#" method="post">
+                    {% for msg in app.flashes('contact_success') %}
+                        <div class="contact-form__flash contact-form__flash--success">{{ msg }}</div>
+                    {% endfor %}
+                    {% for msg in app.flashes('contact_error') %}
+                        <div class="contact-form__flash contact-form__flash--error">{{ msg }}</div>
+                    {% endfor %}
+
+                    <form class="contact-form" action="{{ path('app_contact') }}" method="post">
 
                         <div class="contact-form__group">
                             <label class="contact-form__label" for="contact-name">Nom complet <span class="contact-form__required">*</span></label>
-                            <input type="text" id="contact-name" name="name" class="contact-form__input" placeholder="Votre nom" required>
+                            <input type="text" id="contact-name" name="name" class="contact-form__input" placeholder="Votre nom" value="{{ old.nom ?? '' }}" required>
                         </div>
 
                         <div class="contact-form__group">
                             <label class="contact-form__label" for="contact-email">Email <span class="contact-form__required">*</span></label>
-                            <input type="email" id="contact-email" name="email" class="contact-form__input" placeholder="votre@email.com" required>
+                            <input type="email" id="contact-email" name="email" class="contact-form__input" placeholder="votre@email.com" value="{{ old.email ?? '' }}" required>
                         </div>
 
                         <div class="contact-form__group">
                             <label class="contact-form__label" for="contact-motif">Soin souhaité <span class="contact-form__required">*</span></label>
                             <select id="contact-motif" name="motif" class="contact-form__input contact-form__select" required>
-                                <option value="" disabled selected>Sélectionnez un soin</option>
-                                <option value="consultation">Première consultation</option>
-                                <option value="greffe-fue">Greffe capillaire FUE</option>
-                                <option value="greffe-dhi">Greffe capillaire DHI</option>
-                                <option value="greffe-barbe">Greffe de barbe</option>
-                                <option value="dentisterie">Dentisterie esthétique</option>
-                                <option value="autre">Autre</option>
+                                <option value="" disabled {{ (old.motif ?? '') == '' ? 'selected' : '' }}>Sélectionnez un soin</option>
+                                <option value="consultation" {{ (old.motif ?? '') == 'consultation' ? 'selected' : '' }}>Première consultation</option>
+                                <option value="greffe-fue" {{ (old.motif ?? '') == 'greffe-fue' ? 'selected' : '' }}>Greffe capillaire FUE</option>
+                                <option value="greffe-dhi" {{ (old.motif ?? '') == 'greffe-dhi' ? 'selected' : '' }}>Greffe capillaire DHI</option>
+                                <option value="greffe-barbe" {{ (old.motif ?? '') == 'greffe-barbe' ? 'selected' : '' }}>Greffe de barbe</option>
+                                <option value="dentisterie" {{ (old.motif ?? '') == 'dentisterie' ? 'selected' : '' }}>Dentisterie esthétique</option>
+                                <option value="autre" {{ (old.motif ?? '') == 'autre' ? 'selected' : '' }}>Autre</option>
                             </select>
                         </div>
 
                         <div class="contact-form__group">
                             <label class="contact-form__label" for="contact-message">Message</label>
-                            <textarea id="contact-message" name="message" class="contact-form__input contact-form__textarea" placeholder="Décrivez votre demande en quelques mots..." rows="5"></textarea>
+                            <textarea id="contact-message" name="message" class="contact-form__input contact-form__textarea" placeholder="Décrivez votre demande en quelques mots..." rows="5">{{ old.message ?? '' }}</textarea>
                         </div>
 
                         <div class="contact-form__check">
                             <input type="checkbox" id="contact-rgpd" name="rgpd" required>
-                            <label for="contact-rgpd">J'accepte les <a href="{{ path('app_politique_confidentialite') }}">conditions générales de protection des données</a></label>
+                            <label for="contact-rgpd">J'accepte la <a href="{{ path('app_politique_confidentialite') }}">politique de protection des données</a></label>
                         </div>
 
                         <button type="submit" class="contact-form__submit">
@@ -86,7 +93,7 @@
                                 </div>
                                 <div>
                                     <span class="contact-card__item-label">Email</span>
-                                    <a href="mailto:contact@alliance-esthetic.fr" class="contact-card__item-value">contact@alliance-esthetic.fr</a>
+                                    <a href="mailto:boubsw@gmail.com" class="contact-card__item-value">boubsw@gmail.com</a>
                                 </div>
                             </div>
 
@@ -95,8 +102,18 @@
                                     {{ phone() }}
                                 </div>
                                 <div>
-                                    <span class="contact-card__item-label">Téléphone (1er contact)</span>
-                                    <a href="tel:+33123456789" class="contact-card__item-value">+33 1 23 45 67 89</a>
+                                    <span class="contact-card__item-label">Téléphone France</span>
+                                    <a href="tel:+33614863505" class="contact-card__item-value">06 14 86 35 05</a>
+                                </div>
+                            </div>
+
+                            <div class="contact-card__item">
+                                <div class="contact-card__icon">
+                                    {{ phone() }}
+                                </div>
+                                <div>
+                                    <span class="contact-card__item-label">GSM Algérie</span>
+                                    <a href="tel:+213676774652" class="contact-card__item-value">00213 6 76 77 46 52</a>
                                 </div>
                             </div>
 
@@ -119,21 +136,8 @@
                     <div class="contact-card contact-card--social">
                         <h3 class="contact-card__title">Suivez-nous</h3>
                         <div class="contact-social">
-                            <a href="#" class="contact-social__link" aria-label="Instagram">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                                    <circle cx="12" cy="12" r="4"/>
-                                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
-                                </svg>
-                            </a>
-                            <a href="#" class="contact-social__link" aria-label="Facebook">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                                </svg>
-                            </a>
-                            <a href="mailto:contact@alliance-esthetic.fr" class="contact-social__link" aria-label="Email">
-                                {{ email() }}
-                            </a>
+                            <a href="{{ social_whatsapp_url }}" class="contact-social__link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">{{ whatsapp() }}</a>
+                            <a href="{{ social_snapchat_url }}" class="contact-social__link" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">{{ snapchat() }}</a>
                         </div>
                     </div>
 

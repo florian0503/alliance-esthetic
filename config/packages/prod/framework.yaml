@@ -1,0 +1,13 @@
+# Production : cookies session compatibles HTTPS (auto = true si requête HTTPS)
+# APP_ENV=prod et APP_DEBUG=0 sur le serveur (voir .env)
+# Derrière un reverse proxy : définir TRUSTED_PROXIES dans .env.local (IPs ou CIDR, séparés par des virgules)
+framework:
+    session:
+        cookie_secure: auto
+        cookie_samesite: lax
+    trusted_proxies: '%env(csv:default::TRUSTED_PROXIES)%'
+    trusted_headers:
+        - x-forwarded-for
+        - x-forwarded-proto
+        - x-forwarded-port
+        - x-forwarded-host

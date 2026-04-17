@@ -1,4 +1,4 @@
-{% from 'partials/_icons.html.twig' import facebook, instagram, linkedin, twitter, phone, email, location %}
+{% from 'partials/_icons.html.twig' import snapchat, whatsapp, phone, email, location %}
 
 {# Footer #}
 <footer class="footer">
@@ -18,8 +18,8 @@
                     <ul class="footer__links">
                         <li><a href="{{ path('app_home') }}">Accueil</a></li>
                         <li><a href="{{ path('app_services') }}">Services</a></li>
-                        <li><a href="#">Assurance</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{{ path('app_assurance') }}">Assurance</a></li>
+                        <li><a href="{{ path('app_contact') }}">Contact</a></li>
                     </ul>
                 </div>
 
@@ -33,11 +33,15 @@
                         </li>
                         <li>
                             {{ phone() }}
-                            <a href="tel:+33123456789">+33 1 23 45 67 89</a>
+                            <a href="tel:+33614863505">06 14 86 35 05</a>
+                        </li>
+                        <li>
+                            {{ phone() }}
+                            <a href="tel:+213676774652">Algérie : 00213 6 76 77 46 52</a>
                         </li>
                         <li>
                             {{ email() }}
-                            <a href="mailto:contact@alliance-esthetic.fr">contact@alliance-esthetic.fr</a>
+                            <a href="mailto:boubsw@gmail.com">boubsw@gmail.com</a>
                         </li>
                     </ul>
                 </div>
@@ -60,9 +64,8 @@
                 </div>
             </div>
             <div class="footer__social-bar">
-                <a href="#" aria-label="Facebook">{{ facebook() }}</a>
-                <a href="#" aria-label="Instagram">{{ instagram() }}</a>
-                <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+                <a href="{{ social_whatsapp_url }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">{{ whatsapp() }}</a>
+                <a href="{{ social_snapchat_url }}" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">{{ snapchat() }}</a>
             </div>
         </div>
     </div>
@@ -71,15 +74,15 @@
     <div class="footer__bottom">
         <div class="container">
             <div class="footer__social footer__social--mobile">
-                <a href="#" aria-label="Facebook">{{ facebook() }}</a>
-                <a href="#" aria-label="Instagram">{{ instagram() }}</a>
-                <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+                <a href="{{ social_whatsapp_url }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">{{ whatsapp() }}</a>
+                <a href="{{ social_snapchat_url }}" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">{{ snapchat() }}</a>
             </div>
             <p>&copy; 2026 Alliance Esthetic. Tous droits réservés. — Réalisé par <a href="https://entryweb.fr" target="_blank" rel="noopener noreferrer"><strong>EntryWeb</strong></a></p>
             <div class="footer__legal">
                 <a href="{{ path('app_mentions_legales') }}">Mentions légales</a>
                 <a href="{{ path('app_politique_confidentialite') }}">Politique de confidentialité</a>
                 <a href="{{ path('app_cgv') }}">CGV</a>
+                <button type="button" class="footer__legal-btn" id="cookie-prefs">Cookies</button>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-{% from 'partials/_icons.html.twig' import phone, email, facebook, instagram, linkedin %}
+{% from 'partials/_icons.html.twig' import phone, email, snapchat, whatsapp %}
 {% set is_home = app.request.attributes.get('_route') == 'app_home' %}
 
 <header class="site-header{{ not is_home ? ' site-header--solid' : '' }}" id="site-header" data-transparent="{{ is_home ? '1' : '0' }}">
@@ -7,19 +7,22 @@
 <div class="top-bar">
     <div class="container">
         <div class="top-bar__contact">
-            <a href="tel:+33123456789">
+            <a href="tel:+33614863505">
                 {{ phone() }}
-                +33 1 23 45 67 89
+                06 14 86 35 05
             </a>
-            <a href="mailto:contact@example.com">
+            <a href="tel:+213676774652">
+                {{ phone() }}
+                Algérie : 00213 6 76 77 46 52
+            </a>
+            <a href="mailto:boubsw@gmail.com">
                 {{ email() }}
-                contact@example.com
+                boubsw@gmail.com
             </a>
         </div>
         <div class="top-bar__social">
-            <a href="#" aria-label="Facebook">{{ facebook() }}</a>
-            <a href="#" aria-label="Instagram">{{ instagram() }}</a>
-            <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+            <a href="{{ social_whatsapp_url }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">{{ whatsapp() }}</a>
+            <a href="{{ social_snapchat_url }}" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">{{ snapchat() }}</a>
         </div>
     </div>
 </div>
@@ -49,19 +52,22 @@
             <div class="navbar__menu-footer">
                 <a href="{{ path('app_reservation') }}" class="navbar__cta navbar__cta--mobile-menu">Réserver en ligne</a>
                 <div class="navbar__menu-contact">
-                    <a href="tel:+33123456789">
+                    <a href="tel:+33614863505">
                         {{ phone() }}
-                        <span>+33 1 23 45 67 89</span>
+                        <span>06 14 86 35 05</span>
                     </a>
-                    <a href="mailto:contact@example.com">
+                    <a href="tel:+213676774652">
+                        {{ phone() }}
+                        <span>Algérie : 00213 6 76 77 46 52</span>
+                    </a>
+                    <a href="mailto:boubsw@gmail.com">
                         {{ email() }}
-                        <span>contact@example.com</span>
+                        <span>boubsw@gmail.com</span>
                     </a>
                 </div>
                 <div class="navbar__menu-social">
-                    <a href="#" aria-label="Facebook">{{ facebook() }}</a>
-                    <a href="#" aria-label="Instagram">{{ instagram() }}</a>
-                    <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+                    <a href="{{ social_whatsapp_url }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">{{ whatsapp() }}</a>
+                    <a href="{{ social_snapchat_url }}" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">{{ snapchat() }}</a>
                 </div>
             </div>
         </div>

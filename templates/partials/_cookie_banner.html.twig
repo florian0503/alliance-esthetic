@@ -1,0 +1,209 @@
+{# Préférences cookies — localStorage ae_cookie_prefs (JSON v2) #}
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-modal="true" aria-labelledby="cookie-banner-title" aria-live="polite" hidden>
+    <div class="cookie-banner__wrap container">
+        <div class="cookie-banner__view cookie-banner__view--simple" id="cookie-view-simple">
+            <p class="cookie-banner__text" id="cookie-banner-title">
+                Nous utilisons des cookies : certains sont <strong>nécessaires</strong> au fonctionnement du site ; d’autres, soumis à votre consentement, servent à la mesure d’audience ou au marketing.
+                <a href="{{ path('app_politique_confidentialite') }}">Politique de confidentialité</a>
+            </p>
+            <div class="cookie-banner__actions">
+                <button type="button" class="btn btn--outline-dark" data-cookie-refuse>Tout refuser</button>
+                <button type="button" class="btn btn--outline-dark" data-cookie-customize>Personnaliser</button>
+                <button type="button" class="btn btn--dark" data-cookie-accept-all>Tout accepter</button>
+            </div>
+        </div>
+
+        <div class="cookie-banner__view cookie-banner__view--custom" id="cookie-view-custom" hidden>
+            <p class="cookie-banner__custom-title" id="cookie-custom-heading">Personnaliser les cookies</p>
+            <p class="cookie-banner__custom-intro">Activez ou désactivez les catégories ci-dessous, puis enregistrez. Les cookies strictement nécessaires ne peuvent pas être désactivés.</p>
+
+            <ul class="cookie-banner__categories" role="list">
+                <li class="cookie-banner__cat">
+                    <div class="cookie-banner__cat-top">
+                        <span class="cookie-banner__cat-name">Strictement nécessaires</span>
+                        <span class="cookie-banner__badge">Toujours actifs</span>
+                    </div>
+                    <p class="cookie-banner__cat-desc">Session, sécurité (CSRF), préférences de base. Indispensables au site (ex. réservation).</p>
+                </li>
+                <li class="cookie-banner__cat">
+                    <div class="cookie-banner__cat-top">
+                        <span class="cookie-banner__cat-name" id="lbl-analytics">Mesure d’audience</span>
+                        <label class="cookie-banner__toggle">
+                            <input type="checkbox" id="cookie-opt-analytics" data-cookie-analytics role="switch" aria-labelledby="lbl-analytics" aria-describedby="desc-analytics">
+                            <span class="cookie-banner__toggle-ui" aria-hidden="true"></span>
+                            <span class="sr-only">Autoriser la mesure d’audience</span>
+                        </label>
+                    </div>
+                    <p class="cookie-banner__cat-desc" id="desc-analytics">Statistiques de fréquentation pour améliorer le site (à activer si vous ajoutez un outil d’analyse).</p>
+                </li>
+                <li class="cookie-banner__cat">
+                    <div class="cookie-banner__cat-top">
+                        <span class="cookie-banner__cat-name" id="lbl-marketing">Marketing &amp; réseaux sociaux</span>
+                        <label class="cookie-banner__toggle">
+                            <input type="checkbox" id="cookie-opt-marketing" data-cookie-marketing role="switch" aria-labelledby="lbl-marketing" aria-describedby="desc-marketing">
+                            <span class="cookie-banner__toggle-ui" aria-hidden="true"></span>
+                            <span class="sr-only">Autoriser le marketing et les réseaux sociaux</span>
+                        </label>
+                    </div>
+                    <p class="cookie-banner__cat-desc" id="desc-marketing">Contenus tiers, publicité ou boutons sociaux (uniquement si ces services sont intégrés au site).</p>
+                </li>
+            </ul>
+
+            <div class="cookie-banner__actions cookie-banner__actions--custom">
+                <button type="button" class="btn btn--outline-dark" data-cookie-back>Retour</button>
+                <button type="button" class="btn btn--dark" data-cookie-save>Enregistrer mes choix</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+(function () {
+    var STORAGE_KEY = 'ae_cookie_prefs';
+    var LEGACY_KEY = 'ae_cookie_consent_v1';
+    var VERSION = 2;
+
+    var el = document.getElementById('cookie-banner');
+    if (!el) return;
+
+    var viewSimple = document.getElementById('cookie-view-simple');
+    var viewCustom = document.getElementById('cookie-view-custom');
+    var inputAnalytics = document.getElementById('cookie-opt-analytics');
+    var inputMarketing = document.getElementById('cookie-opt-marketing');
+
+    function refuseAll() {
+        return { v: VERSION, essential: true, analytics: false, marketing: false };
+    }
+
+    function acceptAll() {
+        return { v: VERSION, essential: true, analytics: true, marketing: true };
+    }
+
+    function parsePrefs(raw) {
+        try {
+            var p = JSON.parse(raw);
+            if (p && p.v === VERSION && typeof p.analytics === 'boolean' && typeof p.marketing === 'boolean') {
+                return p;
+            }
+        } catch (e) {}
+        return null;
+    }
+
+    function loadPrefs() {
+        try {
+            var p = parsePrefs(localStorage.getItem(STORAGE_KEY));
+            if (p) return p;
+        } catch (e) {}
+        try {
+            if (localStorage.getItem(LEGACY_KEY) === '1') {
+                var a = acceptAll();
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(a));
+                localStorage.removeItem(LEGACY_KEY);
+                return a;
+            }
+        } catch (e) {}
+        return null;
+    }
+
+    function savePrefs(p) {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+        } catch (e) {}
+        applyPrefsGlobal(p);
+        closeBanner();
+    }
+
+    function applyPrefsGlobal(p) {
+        window.AE_COOKIE_PREFS = p;
+        try {
+            window.dispatchEvent(new CustomEvent('ae:cookies', { detail: p }));
+        } catch (e) {}
+    }
+
+    function fillFormFromPrefs(p) {
+        if (inputAnalytics) inputAnalytics.checked = !!p.analytics;
+        if (inputMarketing) inputMarketing.checked = !!p.marketing;
+    }
+
+    function readFormPrefs() {
+        return {
+            v: VERSION,
+            essential: true,
+            analytics: !!(inputAnalytics && inputAnalytics.checked),
+            marketing: !!(inputMarketing && inputMarketing.checked)
+        };
+    }
+
+    function showBanner() {
+        el.removeAttribute('hidden');
+        el.removeAttribute('aria-hidden');
+    }
+
+    function closeBanner() {
+        el.setAttribute('hidden', '');
+        el.setAttribute('aria-hidden', 'true');
+    }
+
+    function showSimpleView() {
+        if (viewSimple) viewSimple.hidden = false;
+        if (viewCustom) viewCustom.hidden = true;
+    }
+
+    function showCustomView() {
+        if (viewSimple) viewSimple.hidden = true;
+        if (viewCustom) viewCustom.hidden = false;
+    }
+
+    var refuseBtn = el.querySelector('[data-cookie-refuse]');
+    if (refuseBtn) refuseBtn.addEventListener('click', function () { savePrefs(refuseAll()); });
+
+    var acceptAllBtn = el.querySelector('[data-cookie-accept-all]');
+    if (acceptAllBtn) acceptAllBtn.addEventListener('click', function () { savePrefs(acceptAll()); });
+
+    var customizeBtn = el.querySelector('[data-cookie-customize]');
+    if (customizeBtn) customizeBtn.addEventListener('click', function () {
+        var p = loadPrefs() || refuseAll();
+        fillFormFromPrefs(p);
+        showCustomView();
+    });
+
+    var backBtn = el.querySelector('[data-cookie-back]');
+    if (backBtn) backBtn.addEventListener('click', function () { showSimpleView(); });
+
+    var saveBtn = el.querySelector('[data-cookie-save]');
+    if (saveBtn) saveBtn.addEventListener('click', function () { savePrefs(readFormPrefs()); });
+
+    document.addEventListener('keydown', function (ev) {
+        if (el.hasAttribute('hidden')) return;
+        if (ev.key !== 'Escape') return;
+        if (viewCustom && !viewCustom.hidden) {
+            showSimpleView();
+        } else {
+            savePrefs(refuseAll());
+        }
+    });
+
+    var prefsBtn = document.getElementById('cookie-prefs');
+    if (prefsBtn) {
+        prefsBtn.addEventListener('click', function () {
+            var p = loadPrefs();
+            showBanner();
+            if (p) {
+                fillFormFromPrefs(p);
+                showCustomView();
+            } else {
+                fillFormFromPrefs(refuseAll());
+                showSimpleView();
+            }
+        });
+    }
+
+    var existing = loadPrefs();
+    if (existing) {
+        applyPrefsGlobal(existing);
+        return;
+    }
+
+    showBanner();
+    showSimpleView();
+})();
+</script>
