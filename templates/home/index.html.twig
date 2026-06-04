@@ -38,7 +38,7 @@
 
                 <div class="explication__media reveal reveal--right">
                     <div class="explication__img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=800&q=80" alt="Clinique Alliance Esthetic" loading="lazy">
+                        <img src="{{ asset('images/explication-medecin.png') }}" alt="Clinique Alliance Esthetic" loading="lazy" style="object-fit: cover; object-position: top center;">
                     </div>
                     <div class="explication__card">
                         <div class="explication__card-icon">
@@ -162,7 +162,7 @@
 
                 <div class="svc-card reveal">
                     <div class="svc-card__image">
-                        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=800&q=80" alt="Implantologie Capillaire" loading="lazy">
+                        <img src="{{ asset('images/greffe-capillaire.png') }}" alt="Greffe Capillaire" loading="lazy" style="object-position: top center;">
                         <div class="svc-card__icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 2a5 5 0 015 5c0 3-2 5.5-5 8-3-2.5-5-5-5-8a5 5 0 015-5z"/>
@@ -171,15 +171,23 @@
                         </div>
                     </div>
                     <div class="svc-card__body">
-                        <h3 class="svc-card__title">Implantologie Capillaire</h3>
-                        <p class="svc-card__desc">Des techniques de pointe pour redensifier votre chevelure ou votre barbe. Des résultats naturels, denses et durables grâce à notre expertise en micro-greffe capillaire.</p>
+                        <h3 class="svc-card__title">Greffe Capillaire –<br><span class="svc-card__title--accent">Turquie &amp; Algérie</span></h3>
+                        <p class="svc-card__desc">Des médecins turcs expérimentés, installés à Alger pour vous offrir des résultats naturels et durables.</p>
+                        <ul class="svc-card__list">
+                            <li>Médecins turcs expérimentés</li>
+                            <li>Résultats 100% garantis</li>
+                            <li>Technique FUE</li>
+                            <li>Technique DHI</li>
+                            <li>Suivi personnalisé</li>
+                            <li>Cliniques à Alger</li>
+                        </ul>
                         <a href="{{ path('app_services') }}" class="arrow-link">EN SAVOIR PLUS <span>&rarr;</span></a>
                     </div>
                 </div>
 
                 <div class="svc-card reveal">
                     <div class="svc-card__image">
-                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80" alt="Dentisterie Esthétique" loading="lazy">
+                        <img src="{{ asset('images/dentisterie-esthetique.png') }}" alt="Dentisterie Esthétique" loading="lazy" style="object-position: top center;">
                         <div class="svc-card__icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 2c-2.5 0-5 1.5-5 4 0 1.5.5 3 1 4.5C9 13 9.5 16 9 18c-.3 1.5 0 3 1.5 3s2-1.5 1.5-3c-.3-1 0-2 0-2s.3 1 0 2c-.5 1.5 0 3 1.5 3s1.8-1.5 1.5-3c-.5-2 0-5 1-7.5.5-1.5 1-3 1-4.5 0-2.5-2.5-4-5-4z"/>
@@ -187,8 +195,16 @@
                         </div>
                     </div>
                     <div class="svc-card__body">
-                        <h3 class="svc-card__title">Dentisterie Esthétique</h3>
-                        <p class="svc-card__desc">Un sourire parfait grâce à nos solutions de blanchiment, facettes et alignement dentaire. Des traitements personnalisés pour révéler votre plus beau sourire en toute sérénité.</p>
+                        <h3 class="svc-card__title">Soins Dentaires –<br><span class="svc-card__title--accent">Turquie &amp; Maghreb</span></h3>
+                        <p class="svc-card__desc">Retrouvez un sourire sain et harmonieux grâce à des soins dentaires de haute qualité en Turquie et au Maghreb. Nous proposons des solutions adaptées à chaque patient :</p>
+                        <ul class="svc-card__list">
+                            <li>Implants dentaires</li>
+                            <li>Couronnes en zirconium</li>
+                            <li>Facettes esthétiques</li>
+                            <li>Greffes osseuses</li>
+                            <li>Sinus lift</li>
+                            <li>Réhabilitations complètes</li>
+                        </ul>
                         <a href="{{ path('app_services') }}" class="arrow-link">EN SAVOIR PLUS <span>&rarr;</span></a>
                     </div>
                 </div>
