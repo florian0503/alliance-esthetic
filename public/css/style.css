@@ -2228,7 +2228,7 @@ ul {
 /* Image + badge */
 .svc-card__image {
     position: relative;
-    height: 200px;
+    height: 300px;
     overflow: hidden;
 }
 
@@ -2330,7 +2330,7 @@ ul {
     }
 
     .svc-card__image {
-        height: 180px;
+        height: 240px;
     }
 
     .svc-cards__grid .svc-card:nth-child(n+4) {
@@ -2966,7 +2966,7 @@ ul {
 .svc-card__image {
     position: relative;
     overflow: hidden;
-    height: 260px;
+    height: 380px;
 }
 
 .svc-card__image img {
@@ -3018,12 +3018,48 @@ ul {
     font-size: 0.9rem;
     color: #666;
     line-height: 1.75;
-    margin-bottom: 24px;
+    margin-bottom: 14px;
+}
+
+.svc-card__title--accent {
+    color: #6ab1d9;
+}
+
+.svc-card__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
+}
+
+.svc-card__list li {
+    font-size: 0.78rem;
+    color: #475569;
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.4;
+}
+
+.svc-card__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #6ab1d9;
 }
 
 @media (max-width: 768px) {
     .svc-cards__grid {
         grid-template-columns: 1fr;
+    }
+
+    .svc-card__image {
+        height: 320px;
     }
 }
 
