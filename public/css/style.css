@@ -2966,7 +2966,7 @@ ul {
 .svc-card__image {
     position: relative;
     overflow: hidden;
-    height: 380px;
+    height: 375px;
 }
 
 .svc-card__image img {
