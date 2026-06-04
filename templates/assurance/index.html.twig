@@ -1,31 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Alliance Esthetic — Mutuelle & Assurance{% endblock %}
+{% block title %}Alliance Esthetic — Conditions & Réglementation de l'Assurance{% endblock %}
 
 {% block body %}
 
     {# Hero #}
     <section class="assurance-hero">
         <div class="container">
-            <h1 class="assurance-hero__title">Comprendre la prise en charge<br>de vos soins</h1>
+            <span class="assurance-hero__label">ALLIANCE ESTHETIC</span>
+            <h1 class="assurance-hero__title">Conditions et Réglementation<br>de l'Assurance <span class="assurance-hero__title--accent">— Durée de 1 an</span></h1>
             <p class="assurance-hero__subtitle">
-                La médecine esthétique relève principalement du confort personnel.
-                Néanmoins, certains actes de chirurgie ou dermatologie réparatrice
-                peuvent faire l'objet d'un remboursement partiel.
+                La durée de l'assurance est d'un an. Elle prend effet à compter de la première visite
+                ainsi que du début des soins. Sa validité est strictement limitée à une période de 1 an.
             </p>
         </div>
     </section>
 
-    {# Contenu principal : 2 colonnes #}
+    {# Ce que couvre l'assurance #}
     <section class="assurance-content">
         <div class="container">
             <div class="assurance-grid">
 
-                {# Colonne gauche : Quels actes ? #}
+                {# Colonne gauche #}
                 <div class="assurance-actes reveal reveal--left">
-                    <h2 class="assurance-actes__title">Quels actes sont concernés ?</h2>
+                    <h2 class="assurance-actes__title">Ce que couvre l'assurance</h2>
 
-                    {# Actes esthétiques purs #}
+                    <div class="assurance-acte-block">
+                        <div class="assurance-acte-block__label assurance-acte-block__label--success">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                            INCLUS DANS L'ASSURANCE
+                        </div>
+                        <ul class="assurance-acte-block__list">
+                            <li><strong>Le billet d'avion</strong> — Le patient devra avancer le coût de son billet d'avion et sera remboursé à son arrivée en présentation de la facture.</li>
+                            <li><strong>L'hébergement</strong></li>
+                            <li><strong>Les transferts</strong></li>
+                            <li><strong>Les soins du patient</strong> — sous réserve d'une étude préalable de son dossier par notre cabinet.</li>
+                        </ul>
+                    </div>
+
+                    {# Prothèses provisoires #}
                     <div class="assurance-acte-block">
                         <div class="assurance-acte-block__label assurance-acte-block__label--warning">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
@@ -33,65 +49,47 @@
                                 <line x1="12" y1="9" x2="12" y2="13"/>
                                 <line x1="12" y1="17" x2="12.01" y2="17"/>
                             </svg>
-                            ACTES ESTHÉTIQUES PURS
+                            PROTHÈSES PROVISOIRES
                         </div>
                         <p class="assurance-acte-block__text">
-                            Les actes à visée purement esthétique (injections d'acide hyaluronique pour le rajeunissement, épilation laser de confort, peeling esthétiques) <strong>ne sont pas pris en charge</strong> par la Sécurité Sociale ni par votre mutuelle.
+                            Les prothèses provisoires sont posées en fin de la première pose. Toutefois, en cas de risque de détérioration lié au non-respect des consignes médicales, la réalisation d'une seconde prothèse provisoire serait <strong>entièrement à la charge du patient</strong>.
                         </p>
-                        <ul class="assurance-acte-block__list">
-                            <li>Injections anti-rides</li>
-                            <li>Épilation définitive classique</li>
-                            <li>Remodelage corporel esthétique</li>
-                            <li>Soins hydratants profonds</li>
-                        </ul>
-                    </div>
-
-                    {# Actes réparateurs #}
-                    <div class="assurance-acte-block">
-                        <div class="assurance-acte-block__label assurance-acte-block__label--success">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                <polyline points="22 4 12 14.01 9 11.01"/>
-                            </svg>
-                            ACTES RÉPARATEURS
-                        </div>
                         <p class="assurance-acte-block__text">
-                            Certains traitements à visée réparatrice ou pathologique peuvent bénéficier d'une prise en charge après accord préalable de la CPAM (ex : hyperhidrose sévère, traitement des cicatrices post-traumatiques, épilation médicale dans certains cas d'hirsutisme).
+                            Notre prothèse est posée en <strong>PMMA</strong>, un matériau reconnu pour sa grande solidité et résistance.
                         </p>
                     </div>
                 </div>
 
-                {# Colonne droite : Vos démarches #}
+                {# Colonne droite #}
                 <div class="assurance-demarches reveal reveal--right">
-                    <h2 class="assurance-demarches__title">Vos démarches</h2>
+                    <h2 class="assurance-demarches__title">Les conditions à respecter</h2>
 
                     <div class="assurance-steps">
                         <div class="assurance-step">
                             <div class="assurance-step__num">1</div>
                             <div class="assurance-step__body">
-                                <h3 class="assurance-step__title">LA CONSULTATION INITIALE</h3>
-                                <p class="assurance-step__text">Lors de votre première visite, notre médecin évaluera si votre demande relève de l'esthétique pure ou du réparateur. Un devis clair et détaillé vous sera systématiquement remis.</p>
+                                <h3 class="assurance-step__title">ALIMENTATION</h3>
+                                <p class="assurance-step__text">Alimentation molle uniquement (biscuits, bonbons, fruits à coque, etc.). Interdiction de consommer des aliments durs susceptibles de fragiliser les prothèses.</p>
                             </div>
                         </div>
 
                         <div class="assurance-step">
                             <div class="assurance-step__num">2</div>
                             <div class="assurance-step__body">
-                                <h3 class="assurance-step__title">L'ACCORD PRÉALABLE</h3>
-                                <p class="assurance-step__text">Si l'acte est susceptible d'être pris en charge, nous remplirons ensemble une demande d'entente préalable à envoyer à votre Caisse d'Assurance Maladie.</p>
+                                <h3 class="assurance-step__title">MOUVEMENTS</h3>
+                                <p class="assurance-step__text">Éviter tout mouvement susceptible de fragiliser les tissus dentaires et de compromettre la bonne intégration des implants.</p>
                             </div>
                         </div>
 
                         <div class="assurance-step">
                             <div class="assurance-step__num">3</div>
                             <div class="assurance-step__body">
-                                <h3 class="assurance-step__title">FACTURATION ET MUTUELLE</h3>
-                                <p class="assurance-step__text">Après l'intervention, une note d'honoraires vous sera remise. Vous pourrez la transmettre à votre mutuelle pour connaître le montant de votre reste à charge éventuel.</p>
+                                <h3 class="assurance-step__title">HYGIÈNE</h3>
+                                <p class="assurance-step__text">Hygiène bucco-dentaire irréprochable sur les prothèses. Ces précautions sont essentielles pour la bonne préservation des implants provisoires et demeurent une condition absolue pour la facturation de l'assurance au prestataire.</p>
                             </div>
                         </div>
                     </div>
 
-                    {# Carte transparence #}
                     <div class="assurance-transparency">
                         <div class="assurance-transparency__icon">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
@@ -99,8 +97,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h4 class="assurance-transparency__title">Transparence Totale</h4>
-                            <p class="assurance-transparency__text">Chez Alliance Esthetic, nous mettons un point d'honneur à vous informer de façon exhaustive sur les coûts et les éventuelles prises en charge avant tout acte médical. Aucun soin n'est débuté sans votre consentement éclairé.</p>
+                            <h4 class="assurance-transparency__title">Après expiration de la période de 1 an</h4>
+                            <p class="assurance-transparency__text">Au-delà de cette période, en cas de complications ou de tout autre problème, le patient devra assumer lui-même : les frais d'hébergement, les transferts ainsi que le billet d'avion. Les soins ponctuels seront évalués au cas par cas et pris en charge par nos prestataires de soins.</p>
                         </div>
                     </div>
                 </div>
@@ -109,12 +107,12 @@
         </div>
     </section>
 
-    {# CTA section #}
+    {# Partenaires #}
     <section class="assurance-cta">
         <div class="container">
-            <h2 class="assurance-cta__title">Des questions sur votre dossier ?</h2>
-            <p class="assurance-cta__text">Nos secrétaires médicales sont disponibles pour vous accompagner dans vos démarches administratives et répondre à toutes vos interrogations.</p>
-            <a href="{{ path('app_contact') }}" class="btn btn--dark">CONTACTER LE SECRÉTARIAT</a>
+            <h2 class="assurance-cta__title">Notre équipe de dentistes partenaires</h2>
+            <p class="assurance-cta__text">Des cliniques partenaires sélectionnées pour leur excellence, disponibles à Alger, Lyon et Paris pour assurer votre suivi et vos soins.</p>
+            <a href="{{ path('app_contact') }}" class="btn btn--dark">PRENDRE RENDEZ-VOUS</a>
         </div>
     </section>
 
