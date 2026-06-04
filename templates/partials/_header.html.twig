@@ -1,4 +1,4 @@
-{% from 'partials/_icons.html.twig' import phone, email, facebook, instagram, linkedin %}
+{% from 'partials/_icons.html.twig' import phone, email, snapchat, whatsapp %}
 {% set is_home = app.request.attributes.get('_route') == 'app_home' %}
 
 <header class="site-header{{ not is_home ? ' site-header--solid' : '' }}" id="site-header" data-transparent="{{ is_home ? '1' : '0' }}">
@@ -7,19 +7,22 @@
 <div class="top-bar">
     <div class="container">
         <div class="top-bar__contact">
-            <a href="tel:+33123456789">
+            <a href="tel:+33614863505">
                 {{ phone() }}
-                +33 1 23 45 67 89
+                06 14 86 35 05
             </a>
-            <a href="mailto:contact@example.com">
+            <a href="tel:+213676774652">
+                {{ phone() }}
+                Algérie : 00213 6 76 77 46 52
+            </a>
+            <a href="mailto:boubsw@gmail.com">
                 {{ email() }}
-                contact@example.com
+                boubsw@gmail.com
             </a>
         </div>
         <div class="top-bar__social">
-            <a href="#" aria-label="Facebook">{{ facebook() }}</a>
-            <a href="#" aria-label="Instagram">{{ instagram() }}</a>
-            <a href="#" aria-label="LinkedIn">{{ linkedin() }}</a>
+            <a href="{{ social_whatsapp_url }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">{{ whatsapp() }}</a>
+            <a href="{{ social_snapchat_url }}" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">{{ snapchat() }}</a>
         </div>
     </div>
 </div>
@@ -38,15 +41,38 @@
         </button>
 
         {% set current_route = app.request.attributes.get('_route') ?? '' %}
-        <ul class="navbar__menu" id="navbar-menu">
-            <li><a href="{{ path('app_home') }}" class="navbar__link{{ current_route == 'app_home' ? ' navbar__link--active' : '' }}">Accueil</a></li>
-            <li><a href="{{ path('app_services') }}" class="navbar__link{{ current_route == 'app_services' ? ' navbar__link--active' : '' }}">Services</a></li>
-            <li><a href="{{ path('app_assurance') }}" class="navbar__link{{ current_route == 'app_assurance' ? ' navbar__link--active' : '' }}">Assurance</a></li>
-            <li><a href="{{ path('app_contact') }}" class="navbar__link{{ current_route == 'app_contact' ? ' navbar__link--active' : '' }}">Contact</a></li>
-            <li class="navbar__cta-mobile"><a href="#" class="navbar__cta">Réserver en ligne</a></li>
-        </ul>
+        <div class="navbar__mobile-overlay" id="navbar-overlay" aria-hidden="true"></div>
+        <div class="navbar__menu" id="navbar-menu">
+            <ul class="navbar__menu-links">
+                <li><a href="{{ path('app_home') }}" class="navbar__link{{ current_route == 'app_home' ? ' navbar__link--active' : '' }}">Accueil</a></li>
+                <li><a href="{{ path('app_services') }}" class="navbar__link{{ current_route == 'app_services' ? ' navbar__link--active' : '' }}">Services</a></li>
+                <li><a href="{{ path('app_assurance') }}" class="navbar__link{{ current_route == 'app_assurance' ? ' navbar__link--active' : '' }}">Assurance</a></li>
+                <li><a href="{{ path('app_contact') }}" class="navbar__link{{ current_route == 'app_contact' ? ' navbar__link--active' : '' }}">Contact</a></li>
+            </ul>
+            <div class="navbar__menu-footer">
+                <a href="{{ path('app_reservation') }}" class="navbar__cta navbar__cta--mobile-menu">Réserver en ligne</a>
+                <div class="navbar__menu-contact">
+                    <a href="tel:+33614863505">
+                        {{ phone() }}
+                        <span>06 14 86 35 05</span>
+                    </a>
+                    <a href="tel:+213676774652">
+                        {{ phone() }}
+                        <span>Algérie : 00213 6 76 77 46 52</span>
+                    </a>
+                    <a href="mailto:boubsw@gmail.com">
+                        {{ email() }}
+                        <span>boubsw@gmail.com</span>
+                    </a>
+                </div>
+                <div class="navbar__menu-social">
+                    <a href="{{ social_whatsapp_url }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">{{ whatsapp() }}</a>
+                    <a href="{{ social_snapchat_url }}" target="_blank" rel="noopener noreferrer" aria-label="Snapchat">{{ snapchat() }}</a>
+                </div>
+            </div>
+        </div>
 
-        <a href="#" class="navbar__cta navbar__cta--desktop">Réserver en ligne</a>
+        <a href="{{ path('app_reservation') }}" class="navbar__cta navbar__cta--desktop">Réserver en ligne</a>
     </div>
 </nav>
 
@@ -56,19 +82,37 @@
     document.addEventListener('DOMContentLoaded', function () {
         var toggle = document.querySelector('.navbar__toggle');
         var menu = document.getElementById('navbar-menu');
-
+        var overlay = document.getElementById('navbar-overlay');
         var header = document.getElementById('site-header');
+
+        function closeMenu() {
+            menu.classList.remove('is-open');
+            toggle.classList.remove('is-active');
+            header.classList.remove('menu-open');
+            overlay.classList.remove('is-visible');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
 
         if (toggle && menu && header) {
             toggle.addEventListener('click', function () {
                 var isOpen = menu.classList.toggle('is-open');
                 toggle.classList.toggle('is-active', isOpen);
                 header.classList.toggle('menu-open', isOpen);
+                overlay.classList.toggle('is-visible', isOpen);
                 toggle.setAttribute('aria-expanded', String(isOpen));
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            });
+
+            if (overlay) {
+                overlay.addEventListener('click', closeMenu);
+            }
+
+            menu.querySelectorAll('.navbar__link').forEach(function (link) {
+                link.addEventListener('click', closeMenu);
             });
         }
 
-        /* Header transparent → blanc au scroll (uniquement page accueil) */
         if (header && header.dataset.transparent === '1') {
             var onScroll = function () {
                 header.classList.toggle('is-scrolled', window.scrollY > 80);

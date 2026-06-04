@@ -1,0 +1,191 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alliance Esthetic — Politique de confidentialité{% endblock %}
+
+{% block stylesheets %}
+<style>
+    .legal-content {
+        padding: 4rem 0 6rem;
+        background: #fafafa;
+    }
+    .legal-body {
+        max-width: 820px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 32px rgba(0,0,0,.07);
+        padding: 3rem 3.5rem;
+    }
+    .legal-body h2 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin: 2.5rem 0 .75rem;
+        padding-bottom: .4rem;
+        border-bottom: 2px solid #e8e0f5;
+    }
+    .legal-body h2:first-child { margin-top: 0; }
+    .legal-body h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: #333;
+        margin: 1.5rem 0 .5rem;
+    }
+    .legal-body p, .legal-body li {
+        color: #555;
+        line-height: 1.8;
+        font-size: .97rem;
+    }
+    .legal-body ul { padding-left: 1.4rem; margin: .5rem 0; }
+    .legal-body li { margin-bottom: .35rem; }
+    .legal-body a { color: #7c5cbf; text-decoration: underline; }
+    .legal-highlight {
+        background: #f3eeff;
+        border-left: 4px solid #7c5cbf;
+        border-radius: 0 8px 8px 0;
+        padding: 1rem 1.25rem;
+        margin: 1.25rem 0;
+    }
+    .legal-highlight p { margin: 0; color: #4a3570; }
+    .legal-updated {
+        text-align: center;
+        color: #aaa;
+        font-size: .85rem;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #eee;
+    }
+    @media (max-width: 768px) {
+        .legal-body { padding: 2rem 1.25rem; }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+    <section class="page-banner">
+        <div class="page-banner__content">
+            <h1 class="page-banner__title">Politique de confidentialité</h1>
+            <p class="page-banner__subtitle">Comment nous collectons, utilisons et protégeons vos données personnelles</p>
+            <div class="page-banner__breadcrumb">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <span>/</span>
+                <span>Politique de confidentialité</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="legal-content">
+        <div class="container">
+            <div class="legal-body reveal">
+
+                <div class="legal-highlight">
+                    <p>
+                        Alliance Esthetic s'engage à protéger votre vie privée. Cette politique décrit comment nous
+                        traitons vos données personnelles conformément au Règlement Général sur la Protection des
+                        Données (RGPD — Règlement UE 2016/679) et à la loi Informatique et Libertés.
+                    </p>
+                </div>
+
+                <h2>1. Responsable du traitement</h2>
+                <p>
+                    Le responsable du traitement de vos données est <strong>Alliance Esthetic</strong>, dont le siège
+                    social est situé au 47 Boulevard Victor Hugo, 69006 Lyon, France.
+                </p>
+                <p>
+                    Pour toute question relative à vos données personnelles, vous pouvez nous contacter à l'adresse :
+                    <a href="mailto:contact@alliance-esthetic.fr">contact@alliance-esthetic.fr</a>
+                </p>
+
+                <h2>2. Données collectées</h2>
+                <p>Nous collectons les données personnelles suivantes :</p>
+
+                <h3>Via le formulaire de contact</h3>
+                <ul>
+                    <li>Nom et prénom</li>
+                    <li>Adresse email</li>
+                    <li>Numéro de téléphone (si fourni)</li>
+                    <li>Soin souhaité et message</li>
+                </ul>
+
+                <h3>Via la navigation sur le site</h3>
+                <ul>
+                    <li>Adresse IP (anonymisée)</li>
+                    <li>Données de navigation (pages visitées, durée de visite)</li>
+                    <li>Type de navigateur et système d'exploitation</li>
+                </ul>
+
+                <h2>3. Finalités du traitement</h2>
+                <p>Vos données sont collectées pour les finalités suivantes :</p>
+                <ul>
+                    <li>Répondre à vos demandes de contact et de rendez-vous</li>
+                    <li>Vous adresser un devis ou des informations sur nos services</li>
+                    <li>Améliorer notre site et nos services</li>
+                    <li>Respecter nos obligations légales</li>
+                </ul>
+
+                <h2>4. Base légale du traitement</h2>
+                <ul>
+                    <li><strong>Consentement</strong> : pour les communications marketing et les cookies non essentiels</li>
+                    <li><strong>Exécution d'un contrat</strong> : pour la prise en charge de votre dossier médical</li>
+                    <li><strong>Intérêt légitime</strong> : pour améliorer nos services et sécuriser notre site</li>
+                    <li><strong>Obligation légale</strong> : pour la conservation des données de santé</li>
+                </ul>
+
+                <h2>5. Durée de conservation</h2>
+                <ul>
+                    <li><strong>Données de contact</strong> : 3 ans à compter du dernier contact</li>
+                    <li><strong>Données de santé</strong> : 20 ans conformément à la réglementation médicale</li>
+                    <li><strong>Données de navigation</strong> : 13 mois maximum</li>
+                    <li><strong>Données comptables</strong> : 10 ans conformément au Code de commerce</li>
+                </ul>
+
+                <h2>6. Destinataires des données</h2>
+                <p>
+                    Vos données sont destinées aux seuls membres d'Alliance Esthetic habilités dans le cadre de leurs
+                    fonctions. Elles ne sont jamais vendues à des tiers. Elles peuvent être transmises à des prestataires
+                    techniques (hébergement, messagerie) dans le strict respect du RGPD.
+                </p>
+
+                <h2>7. Vos droits</h2>
+                <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+                <ul>
+                    <li><strong>Droit d'accès</strong> : obtenir une copie de vos données</li>
+                    <li><strong>Droit de rectification</strong> : corriger des données inexactes</li>
+                    <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données</li>
+                    <li><strong>Droit à la limitation</strong> : limiter le traitement de vos données</li>
+                    <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré</li>
+                    <li><strong>Droit d'opposition</strong> : vous opposer au traitement de vos données</li>
+                </ul>
+                <p>
+                    Pour exercer ces droits, contactez-nous par email à
+                    <a href="mailto:contact@alliance-esthetic.fr">contact@alliance-esthetic.fr</a>.
+                    Vous pouvez également introduire une réclamation auprès de la
+                    <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">CNIL</a>
+                    (Commission Nationale de l'Informatique et des Libertés).
+                </p>
+
+                <h2>8. Cookies</h2>
+                <p>
+                    Notre site utilise des cookies pour améliorer votre expérience de navigation. Vous pouvez
+                    paramétrer votre navigateur pour refuser les cookies, mais certaines fonctionnalités du site
+                    pourraient ne plus être disponibles.
+                </p>
+                <ul>
+                    <li><strong>Cookies essentiels</strong> : nécessaires au fonctionnement du site (session, sécurité)</li>
+                    <li><strong>Cookies analytiques</strong> : mesure d'audience anonymisée (avec votre consentement)</li>
+                </ul>
+
+                <h2>9. Sécurité</h2>
+                <p>
+                    Alliance Esthetic met en œuvre toutes les mesures techniques et organisationnelles appropriées
+                    pour protéger vos données contre tout accès non autorisé, perte ou destruction. Le site utilise
+                    le protocole HTTPS pour sécuriser les échanges de données.
+                </p>
+
+                <p class="legal-updated">Dernière mise à jour : avril 2026</p>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

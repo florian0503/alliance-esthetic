@@ -7,7 +7,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}?v=17">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}?v=24">
         <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js" defer></script>
         {% block stylesheets %}
@@ -24,6 +24,8 @@
         </main>
 
         {% include 'partials/_footer.html.twig' %}
+
+        {% include 'partials/_cookie_banner.html.twig' %}
 
         <button class="scroll-top" id="scroll-top" aria-label="Retour en haut">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">

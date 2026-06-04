@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% from 'partials/_icons.html.twig' import check, linkedin, twitter, star %}
+{% from 'partials/_icons.html.twig' import star %}
 
 {% block title %}Alliance Esthetic — Accueil{% endblock %}
 
@@ -15,7 +15,7 @@
             <h1 class="hero__title">Révélez votre beauté naturelle</h1>
             <p class="hero__subtitle">Spécialistes en implantologie capillaire et dentisterie esthétique — des résultats durables qui vous ressemblent</p>
             <div class="hero__actions">
-                <a href="#" class="btn btn--primary">Prendre rendez-vous</a>
+                <a href="{{ path('app_reservation') }}" class="btn btn--primary">Prendre rendez-vous</a>
                 <a href="{{ path('app_services') }}" class="btn btn--outline">Découvrir nos soins</a>
             </div>
         </div>
@@ -32,7 +32,7 @@
                     <p class="explication__desc">Spécialistes de la greffe capillaire et de l'esthétique médicale, nous combinons expertise chirurgicale et technologies de pointe pour des résultats durables, naturels et personnalisés. Chaque patient est unique — chaque traitement l'est aussi.</p>
                     <div class="explication__actions">
                         <a href="{{ path('app_services') }}" class="btn btn--dark">DÉCOUVRIR NOS SOINS</a>
-                        <a href="#" class="btn btn--outline-dark">CONSULTATION INITIALE</a>
+                        <a href="{{ path('app_reservation') }}" class="btn btn--outline-dark">CONSULTATION INITIALE</a>
                     </div>
                 </div>
 

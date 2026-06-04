@@ -1,0 +1,477 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alliance Esthetic — Réserver en ligne{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css">
+<style>
+    .reservation-page {
+        background: #f8f7f5;
+        min-height: 100vh;
+        padding-bottom: 80px;
+    }
+
+    /* Steps */
+    .reservation-steps {
+        background: #fff;
+        border-bottom: 1px solid #e8e4df;
+    }
+
+    .reservation-steps__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .res-step {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 24px;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .res-step__num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #e2e8f0;
+        color: #94a3b8;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .res-step__label {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: #94a3b8;
+        white-space: nowrap;
+    }
+
+    .res-step.is-active .res-step__num { background: #6ab1d9; color: #fff; }
+    .res-step.is-active .res-step__label { color: #111; }
+    .res-step.is-done .res-step__num { background: #22c55e; color: #fff; }
+
+    .res-step__sep {
+        width: 32px;
+        height: 1px;
+        background: #e2e8f0;
+        flex-shrink: 0;
+    }
+
+    /* Layout */
+    .reservation-body {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .reservation-layout {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* Calendar card */
+    .calendar-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        overflow: hidden;
+    }
+
+    .calendar-card__head {
+        padding: 20px 24px 16px;
+        border-bottom: 1px solid #f1f0ee;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .calendar-card__title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #111;
+    }
+
+    .calendar-card__legend {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 0.78rem;
+        color: #64748b;
+    }
+
+    .legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .legend-dot--free  { background: #6ab1d9; }
+    .legend-dot--taken { background: #e2e8f0; }
+
+    .calendar-card__body { padding: 20px; }
+
+    /* FullCalendar overrides */
+    #reservation-calendar { font-family: 'Inter', sans-serif; }
+
+    .fc .fc-toolbar-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #111;
+        text-transform: capitalize;
+    }
+
+    .fc .fc-button {
+        background: #f1f5f9;
+        border: none;
+        color: #475569;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: none;
+    }
+
+    .fc .fc-button:hover, .fc .fc-button:focus { background: #e2e8f0; box-shadow: none; }
+    .fc .fc-button-primary:not(:disabled).fc-button-active { background: #6ab1d9; color: #fff; }
+
+    .fc .fc-col-header-cell-cushion {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 10px 0;
+    }
+
+    .fc .fc-timegrid-slot { height: 56px; }
+    .fc .fc-timegrid-slot-label-cushion { font-size: 0.78rem; color: #94a3b8; }
+    .fc .fc-timegrid-col.fc-day-today { background: rgba(106,177,217,0.05); }
+
+    .fc-slot-available {
+        background: #fff !important;
+        border: 1.5px solid #6ab1d9 !important;
+        border-radius: 6px !important;
+        cursor: pointer !important;
+        box-shadow: 0 1px 4px rgba(106,177,217,0.12) !important;
+        transition: background 0.15s !important;
+    }
+
+    .fc-slot-available:hover { background: rgba(106,177,217,0.07) !important; }
+
+    .fc-slot-taken {
+        background: #f1f5f9 !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 6px !important;
+        cursor: not-allowed !important;
+    }
+
+    /* Sidebar */
+    .reservation-sidebar { display: flex; flex-direction: column; gap: 20px; }
+
+    .res-info-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+        padding: 24px;
+    }
+
+    .res-info-card__title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #f1f0ee;
+    }
+
+    .res-horaires { display: flex; flex-direction: column; gap: 8px; }
+
+    .res-horaire-item {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.83rem;
+        color: #64748b;
+        padding: 6px 0;
+        border-bottom: 1px solid #f8f7f5;
+    }
+
+    .res-horaire-item span:last-child { font-weight: 600; color: #111; }
+
+    @media (max-width: 768px) {
+        .res-step__label { display: none; }
+        .calendar-card__body { padding: 10px; }
+
+        .fc .fc-timegrid-slot { height: 60px; }
+        .fc .fc-event { min-height: 54px; }
+        .fc .fc-toolbar-title { font-size: 0.9rem; }
+    }
+
+    .reservation-flash {
+        max-width: 900px;
+        margin: 0 auto 20px;
+        padding: 14px 20px;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        border: 1px solid transparent;
+    }
+
+    .reservation-flash--error {
+        background: rgba(239,68,68,0.08);
+        border-color: rgba(239,68,68,0.25);
+        color: #b91c1c;
+    }
+
+    .reservation-flash--info {
+        background: rgba(59,130,246,0.08);
+        border-color: rgba(59,130,246,0.22);
+        color: #1d4ed8;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="reservation-page">
+
+    <section class="page-banner">
+        <div class="page-banner__content">
+            <h1 class="page-banner__title">Réservez votre consultation</h1>
+            <p class="page-banner__subtitle">Choisissez le créneau qui vous convient — réponse de confirmation sous 24h</p>
+            <div class="page-banner__breadcrumb">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <span>/</span>
+                <span>Réservation</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="reservation-steps">
+        <div class="reservation-steps__inner">
+            <div class="res-step is-active">
+                <div class="res-step__num">1</div>
+                <span class="res-step__label">Choisir un créneau</span>
+            </div>
+            <div class="res-step__sep"></div>
+            <div class="res-step">
+                <div class="res-step__num">2</div>
+                <span class="res-step__label">Vos informations</span>
+            </div>
+            <div class="res-step__sep"></div>
+            <div class="res-step">
+                <div class="res-step__num">3</div>
+                <span class="res-step__label">Confirmation</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="reservation-body">
+        {% for msg in app.flashes('danger') %}
+            <div class="reservation-flash reservation-flash--error" role="alert">{{ msg }}</div>
+        {% endfor %}
+        {% for msg in app.flashes('info') %}
+            <div class="reservation-flash reservation-flash--info" role="status">{{ msg }}</div>
+        {% endfor %}
+        <div class="reservation-layout">
+
+            <div class="calendar-card">
+                <div class="calendar-card__head">
+                    <span class="calendar-card__title">Sélectionnez un créneau</span>
+                    <div class="calendar-card__legend">
+                        <span><span class="legend-dot legend-dot--free"></span>Disponible</span>
+                        <span><span class="legend-dot legend-dot--taken"></span>Indisponible</span>
+                    </div>
+                </div>
+                <div class="calendar-card__body">
+                    <div id="reservation-calendar"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+<script>
+window.__reservationUrls = {
+    slots: {{ path('app_reservation_slots')|json_encode|raw }},
+    confirmer: {{ path('app_reservation_confirmer')|json_encode|raw }}
+};
+document.addEventListener('DOMContentLoaded', function () {
+
+    var takenSlots = [];
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function isTaken(dateStr, hour) {
+        var heureLabel = pad(hour) + 'h – ' + pad(hour + 1) + 'h';
+        return takenSlots.some(function (s) {
+            return s.date === dateStr && s.heure === heureLabel;
+        });
+    }
+
+    function localDateStr(d) {
+        return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    }
+
+    function nextWorkday() {
+        var d = new Date();
+        d.setDate(d.getDate() + 1);
+        while (d.getDay() === 0 || d.getDay() === 6) {
+            d.setDate(d.getDate() + 1);
+        }
+        return d;
+    }
+
+    function generateEvents(start, end) {
+        var events = [];
+        var now = new Date();
+        var tomorrow = new Date(now);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0);
+        var minDateStr = localDateStr(tomorrow);
+
+        var cur = new Date(start);
+        while (cur <= new Date(end)) {
+            var day = cur.getDay();
+            if (day >= 1 && day <= 5) {
+                var dateStr = localDateStr(cur);
+                for (var h = 9; h < 17; h++) {
+                    var tooSoon = dateStr < minDateStr;
+                    var taken = tooSoon || isTaken(dateStr, h);
+                    events.push({
+                        title: '',
+                        start: dateStr + 'T' + pad(h) + ':00:00',
+                        end:   dateStr + 'T' + pad(h + 1) + ':00:00',
+                        classNames: [taken ? 'fc-slot-taken' : 'fc-slot-available'],
+                        extendedProps: { taken: taken, hour: h, dateStr: dateStr }
+                    });
+                }
+            }
+            cur.setDate(cur.getDate() + 1);
+        }
+        return events;
+    }
+
+    var isMobile = window.innerWidth < 768;
+
+    var calendar = new FullCalendar.Calendar(document.getElementById('reservation-calendar'), {
+        locale: 'fr',
+        initialView: isMobile ? 'timeGridDay' : 'timeGridWeek',
+        headerToolbar: { left: 'prev,next today', center: 'title', right: '' },
+        hiddenDays: [0, 6],
+        windowResize: function (view) {
+            var shouldBeDay = window.innerWidth < 768;
+            var currentView = calendar.view.type;
+            if (shouldBeDay && currentView !== 'timeGridDay') {
+                calendar.changeView('timeGridDay');
+            } else if (!shouldBeDay && currentView !== 'timeGridWeek') {
+                calendar.changeView('timeGridWeek');
+            }
+        },
+        slotMinTime: '09:00:00',
+        slotMaxTime: '17:00:00',
+        slotDuration: '01:00:00',
+        slotLabelInterval: '01:00:00',
+        allDaySlot: false,
+        expandRows: true,
+        height: 'auto',
+        nowIndicator: true,
+        displayEventTime: false,
+        initialDate: localDateStr(nextWorkday()),
+        validRange: { start: localDateStr(nextWorkday()) },
+        events: function (info, successCallback) {
+            fetch(window.__reservationUrls.slots)
+                .then(function (r) { return r.json(); })
+                .then(function (data) {
+                    takenSlots = data;
+                    successCallback(generateEvents(info.start, info.end));
+                })
+                .catch(function () {
+                    successCallback(generateEvents(info.start, info.end));
+                });
+        },
+        eventContent: function (arg) {
+            var taken = arg.event.extendedProps.taken;
+            var h = arg.event.extendedProps.hour;
+            if (taken) {
+                return { html: '<div style="font-size:0.8rem;font-weight:700;color:#94a3b8;">' + pad(h) + 'h – ' + pad(h+1) + 'h</div><div style="font-size:0.7rem;color:#94a3b8;">Indisponible</div>' };
+            }
+            return { html: '<div style="font-size:0.8rem;font-weight:700;color:#111;">' + pad(h) + 'h – ' + pad(h+1) + 'h</div><div style="font-size:0.7rem;font-weight:600;color:#6ab1d9;">Disponible</div>' };
+        },
+        eventClick: function (info) {
+            if (info.event.extendedProps.taken) return;
+            var ep = info.event.extendedProps;
+            var d = new Date(info.event.start);
+            var DAYS   = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+            var MONTHS = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+            var dateLabel  = DAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
+            var heureLabel = pad(ep.hour) + 'h – ' + pad(ep.hour + 1) + 'h';
+            var dateIso    = ep.dateStr;
+            var q = new URLSearchParams();
+            q.set('date', dateLabel);
+            q.set('heure', heureLabel);
+            q.set('date_iso', dateIso);
+            window.location.href = window.__reservationUrls.confirmer + '?' + q.toString();
+        },
+        eventDidMount: function (info) {
+            if (info.event.extendedProps.taken) info.el.style.cursor = 'not-allowed';
+        },
+        buttonText: { today: "Aujourd'hui" }
+    });
+
+    calendar.render();
+
+    if (isMobile) {
+        var calBody = document.querySelector('.calendar-card__body');
+        if (calBody) {
+            var pickerRow = document.createElement('div');
+            pickerRow.style.cssText = 'display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 14px;background:#f0f7fc;border-radius:10px;';
+
+            var label = document.createElement('span');
+            label.textContent = 'Aller au :';
+            label.style.cssText = 'font-size:0.85rem;font-weight:600;color:#475569;white-space:nowrap;';
+
+            var datePicker = document.createElement('input');
+            datePicker.type = 'date';
+            datePicker.style.cssText = 'flex:1;padding:8px 12px;border:1px solid #d0e8f3;border-radius:8px;font-size:0.9rem;font-family:inherit;color:#111;background:#fff;';
+            var minWork = nextWorkday();
+            datePicker.min = localDateStr(minWork);
+            datePicker.value = localDateStr(minWork);
+
+            pickerRow.appendChild(label);
+            pickerRow.appendChild(datePicker);
+            calBody.insertBefore(pickerRow, calBody.firstChild);
+
+            datePicker.addEventListener('change', function () {
+                if (datePicker.value) {
+                    var picked = new Date(datePicker.value + 'T12:00:00');
+                    var dow = picked.getDay();
+                    if (dow === 0 || dow === 6) {
+                        while (picked.getDay() === 0 || picked.getDay() === 6) {
+                            picked.setDate(picked.getDate() + 1);
+                        }
+                        datePicker.value = localDateStr(picked);
+                    }
+                    calendar.gotoDate(datePicker.value);
+                }
+            });
+        }
+    }
+});
+</script>
+{% endblock %}
