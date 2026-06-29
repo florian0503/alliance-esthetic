@@ -4450,243 +4450,198 @@ a.contact-card__item-value:hover {
    ASSURANCE PAGE
    ============================================ */
 
-/* Hero */
-.assurance-hero {
-    background: linear-gradient(180deg, #eef6fb 0%, #e2f0f7 100%);
+/* Labels & titres partagés */
+.asr-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #6ab1d9;
+    margin-bottom: 10px;
+}
+.asr-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.25;
+}
+.asr-header {
     text-align: center;
-    padding: 160px 20px 100px;
-    border-bottom: 1px solid #c8e0ee;
+    margin-bottom: 52px;
 }
 
-.assurance-hero__title {
-    font-size: 3rem;
-    font-weight: 800;
-    color: #111111;
-    line-height: 1.2;
-    margin-bottom: 24px;
-    opacity: 0;
-    transform: translateY(25px);
-    animation: heroFadeIn 0.8s cubic-bezier(.16,1,.3,1) 0.2s forwards;
-}
-
-.assurance-hero__subtitle {
-    font-size: 1rem;
-    color: #6b7280;
-    max-width: 580px;
-    margin: 0 auto;
-    line-height: 1.75;
-    opacity: 0;
-    transform: translateY(25px);
-    animation: heroFadeIn 0.8s cubic-bezier(.16,1,.3,1) 0.4s forwards;
-}
-
-/* Content */
-.assurance-content {
-    padding: 80px 0 100px;
+/* Section couverture */
+.asr-covers {
+    padding: 80px 0 90px;
     background: #fff;
 }
-
-.assurance-grid {
+.asr-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 72px;
-    align-items: start;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
-
-/* Colonne gauche — Actes */
-.assurance-actes__title,
-.assurance-demarches__title {
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #111111;
-    margin-bottom: 32px;
-}
-
-.assurance-acte-block {
-    margin-bottom: 36px;
-    padding-bottom: 36px;
-    border-bottom: 1px solid #e8f4f9;
-}
-
-.assurance-acte-block:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.assurance-acte-block__label {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-    padding: 6px 12px;
-    border-radius: 4px;
-}
-
-.assurance-acte-block__label--warning {
-    color: #d97706;
-    background: rgba(217, 119, 6, 0.08);
-}
-
-.assurance-acte-block__label--success {
-    color: #6ab1d9;
-    background: rgba(106, 177, 217, 0.1);
-}
-
-.assurance-acte-block__text {
-    font-size: 0.93rem;
-    color: #4b5563;
-    line-height: 1.75;
-    margin-bottom: 16px;
-}
-
-.assurance-acte-block__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.assurance-acte-block__list li {
-    font-size: 0.9rem;
-    color: #6b7280;
-    padding-left: 18px;
-    position: relative;
-}
-
-.assurance-acte-block__list li::before {
-    content: "›";
-    position: absolute;
-    left: 0;
-    color: #6ab1d9;
-    font-weight: 700;
-}
-
-/* Colonne droite — Démarches */
-.assurance-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    margin-bottom: 32px;
-}
-
-.assurance-step {
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
-}
-
-.assurance-step__num {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    border-radius: 50%;
-    background: #6ab1d9;
-    color: #fff;
-    font-size: 0.85rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.assurance-step__title {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #111111;
-    margin-bottom: 6px;
-}
-
-.assurance-step__text {
-    font-size: 0.9rem;
-    color: #6b7280;
-    line-height: 1.7;
-}
-
-/* Carte Transparence */
-.assurance-transparency {
-    background: rgba(106, 177, 217, 0.07);
-    border: 1px solid rgba(106, 177, 217, 0.25);
+.asr-card {
+    border: 1px solid #e8f0f7;
     border-radius: 12px;
-    padding: 22px 24px;
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
+    padding: 28px 22px;
+    text-align: center;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    cursor: default;
 }
-
-.assurance-transparency__icon {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    border-radius: 10px;
-    background: rgba(106, 177, 217, 0.15);
+.asr-card:hover {
+    border-color: #6ab1d9;
+    box-shadow: 0 4px 20px rgba(106,177,217,0.1);
+}
+.asr-card__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(106,177,217,0.1);
     color: #6ab1d9;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto 16px;
 }
-
-.assurance-transparency__title {
+.asr-card__icon svg { width: 20px; height: 20px; }
+.asr-card h3 {
     font-size: 0.95rem;
     font-weight: 700;
-    color: #111111;
-    margin-bottom: 6px;
+    color: #111;
+    margin-bottom: 8px;
 }
-
-.assurance-transparency__text {
-    font-size: 0.88rem;
+.asr-card p {
+    font-size: 0.875rem;
     color: #6b7280;
     line-height: 1.65;
 }
 
-/* CTA Section */
-.assurance-cta {
-    background: #f4f9fc;
-    text-align: center;
-    padding: 80px 20px;
-    border-top: 1px solid #d0e8f3;
-    border-bottom: 1px solid #d0e8f3;
+/* Section conditions */
+.asr-conditions {
+    padding: 80px 0 90px;
+    background: #f8fafc;
 }
-
-.assurance-cta__title {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #111111;
-    margin-bottom: 16px;
+.asr-steps {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
-
-.assurance-cta__text {
-    font-size: 0.97rem;
+.asr-step {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    padding: 28px 0;
+    border-bottom: 1px solid #e5eaf0;
+}
+.asr-step:last-child { border-bottom: none; }
+.asr-step__num {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #6ab1d9;
+    min-width: 36px;
+    padding-top: 2px;
+}
+.asr-step__body h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.asr-step__body p {
+    font-size: 0.9rem;
     color: #6b7280;
-    max-width: 540px;
-    margin: 0 auto 32px;
     line-height: 1.7;
+}
+
+/* Notes importantes */
+.asr-notes {
+    padding: 60px 0;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.asr-notes .container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.asr-note {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 22px 24px;
+    border-radius: 10px;
+}
+.asr-note--warning {
+    background: #fffbf2;
+    border: 1px solid #fde68a;
+}
+.asr-note--info {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+}
+.asr-note__icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.asr-note--warning .asr-note__icon { background: rgba(217,119,6,0.1); color: #d97706; }
+.asr-note--info .asr-note__icon    { background: rgba(14,165,233,0.1); color: #0ea5e9; }
+.asr-note__icon svg { width: 18px; height: 18px; }
+.asr-note h4 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+.asr-note--warning h4 { color: #92400e; }
+.asr-note--info h4    { color: #0c4a6e; }
+.asr-note p {
+    font-size: 0.875rem;
+    line-height: 1.7;
+}
+.asr-note--warning p { color: #78350f; }
+.asr-note--info p    { color: #075985; }
+
+/* CTA */
+.asr-cta {
+    padding: 80px 20px;
+    background: #f8fafc;
+    border-top: 1px solid #e2eaf2;
+}
+.asr-cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+.asr-cta__inner h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 6px;
+}
+.asr-cta__inner p {
+    font-size: 0.9rem;
+    color: #6b7280;
+    line-height: 1.6;
 }
 
 /* Responsive */
 @media (max-width: 900px) {
-    .assurance-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-    }
+    .asr-cards { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (max-width: 640px) {
-    .assurance-hero {
-        padding: 130px 20px 60px;
-    }
-
-    .assurance-hero__title {
-        font-size: 2rem;
-    }
-
-    .assurance-content {
-        padding: 48px 0 64px;
-    }
+    .asr-cards { grid-template-columns: 1fr; }
+    .asr-cta__inner { flex-direction: column; text-align: center; }
+    .asr-steps { max-width: 100%; }
 }

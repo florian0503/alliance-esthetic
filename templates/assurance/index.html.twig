@@ -1,118 +1,127 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Alliance Esthetic — Conditions & Réglementation de l'Assurance{% endblock %}
+{% block title %}Alliance Esthetic — Assurance 1 an{% endblock %}
 
 {% block body %}
 
-    {# Hero #}
-    <section class="assurance-hero">
-        <div class="container">
-            <span class="assurance-hero__label">ALLIANCE ESTHETIC</span>
-            <h1 class="assurance-hero__title">Conditions et Réglementation<br>de l'Assurance <span class="assurance-hero__title--accent">— Durée de 1 an</span></h1>
-            <p class="assurance-hero__subtitle">
-                La durée de l'assurance est d'un an. Elle prend effet à compter de la première visite
-                ainsi que du début des soins. Sa validité est strictement limitée à une période de 1 an.
-            </p>
-        </div>
-    </section>
-
-    {# Ce que couvre l'assurance #}
-    <section class="assurance-content">
-        <div class="container">
-            <div class="assurance-grid">
-
-                {# Colonne gauche #}
-                <div class="assurance-actes reveal reveal--left">
-                    <h2 class="assurance-actes__title">Ce que couvre l'assurance</h2>
-
-                    <div class="assurance-acte-block">
-                        <div class="assurance-acte-block__label assurance-acte-block__label--success">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                                <polyline points="22 4 12 14.01 9 11.01"/>
-                            </svg>
-                            INCLUS DANS L'ASSURANCE
-                        </div>
-                        <ul class="assurance-acte-block__list">
-                            <li><strong>Le billet d'avion</strong> — Le patient devra avancer le coût de son billet d'avion et sera remboursé à son arrivée en présentation de la facture.</li>
-                            <li><strong>L'hébergement</strong></li>
-                            <li><strong>Les transferts</strong></li>
-                            <li><strong>Les soins du patient</strong> — sous réserve d'une étude préalable de son dossier par notre cabinet.</li>
-                        </ul>
-                    </div>
-
-                    {# Prothèses provisoires #}
-                    <div class="assurance-acte-block">
-                        <div class="assurance-acte-block__label assurance-acte-block__label--warning">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                                <line x1="12" y1="9" x2="12" y2="13"/>
-                                <line x1="12" y1="17" x2="12.01" y2="17"/>
-                            </svg>
-                            PROTHÈSES PROVISOIRES
-                        </div>
-                        <p class="assurance-acte-block__text">
-                            Les prothèses provisoires sont posées en fin de la première pose. Toutefois, en cas de risque de détérioration lié au non-respect des consignes médicales, la réalisation d'une seconde prothèse provisoire serait <strong>entièrement à la charge du patient</strong>.
-                        </p>
-                        <p class="assurance-acte-block__text">
-                            Notre prothèse est posée en <strong>PMMA</strong>, un matériau reconnu pour sa grande solidité et résistance.
-                        </p>
-                    </div>
-                </div>
-
-                {# Colonne droite #}
-                <div class="assurance-demarches reveal reveal--right">
-                    <h2 class="assurance-demarches__title">Les conditions à respecter</h2>
-
-                    <div class="assurance-steps">
-                        <div class="assurance-step">
-                            <div class="assurance-step__num">1</div>
-                            <div class="assurance-step__body">
-                                <h3 class="assurance-step__title">ALIMENTATION</h3>
-                                <p class="assurance-step__text">Alimentation molle uniquement (biscuits, bonbons, fruits à coque, etc.). Interdiction de consommer des aliments durs susceptibles de fragiliser les prothèses.</p>
-                            </div>
-                        </div>
-
-                        <div class="assurance-step">
-                            <div class="assurance-step__num">2</div>
-                            <div class="assurance-step__body">
-                                <h3 class="assurance-step__title">MOUVEMENTS</h3>
-                                <p class="assurance-step__text">Éviter tout mouvement susceptible de fragiliser les tissus dentaires et de compromettre la bonne intégration des implants.</p>
-                            </div>
-                        </div>
-
-                        <div class="assurance-step">
-                            <div class="assurance-step__num">3</div>
-                            <div class="assurance-step__body">
-                                <h3 class="assurance-step__title">HYGIÈNE</h3>
-                                <p class="assurance-step__text">Hygiène bucco-dentaire irréprochable sur les prothèses. Ces précautions sont essentielles pour la bonne préservation des implants provisoires et demeurent une condition absolue pour la facturation de l'assurance au prestataire.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="assurance-transparency">
-                        <div class="assurance-transparency__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 class="assurance-transparency__title">Après expiration de la période de 1 an</h4>
-                            <p class="assurance-transparency__text">Au-delà de cette période, en cas de complications ou de tout autre problème, le patient devra assumer lui-même : les frais d'hébergement, les transferts ainsi que le billet d'avion. Les soins ponctuels seront évalués au cas par cas et pris en charge par nos prestataires de soins.</p>
-                        </div>
-                    </div>
-                </div>
-
+    {# Banner — identique aux autres pages #}
+    <section class="page-banner">
+        <div class="page-banner__content">
+            <h1 class="page-banner__title">Assurance <span style="color:#6ab1d9">1 an</span></h1>
+            <p class="page-banner__subtitle">Prise en charge complète dès votre première visite</p>
+            <div class="page-banner__breadcrumb">
+                <a href="{{ path('app_home') }}">Accueil</a>
+                <span>/</span>
+                <span>Assurance</span>
             </div>
         </div>
     </section>
 
-    {# Partenaires #}
-    <section class="assurance-cta">
+    {# Ce que couvre l'assurance #}
+    <section class="asr-covers">
         <div class="container">
-            <h2 class="assurance-cta__title">Notre équipe de dentistes partenaires</h2>
-            <p class="assurance-cta__text">Des cliniques partenaires sélectionnées pour leur excellence, disponibles à Alger, Lyon et Paris pour assurer votre suivi et vos soins.</p>
-            <a href="{{ path('app_contact') }}" class="btn btn--dark">PRENDRE RENDEZ-VOUS</a>
+            <div class="asr-header reveal">
+                <span class="asr-label">INCLUS DANS VOTRE ASSURANCE</span>
+                <h2 class="asr-title">Ce que nous prenons en charge</h2>
+            </div>
+            <div class="asr-cards reveal">
+                <div class="asr-card">
+                    <div class="asr-card__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                    </div>
+                    <h3>Billet d'avion</h3>
+                    <p>Avancé par le patient, remboursé à l'arrivée sur présentation de la facture.</p>
+                </div>
+                <div class="asr-card">
+                    <div class="asr-card__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3>Hébergement</h3>
+                    <p>Logement intégralement pris en charge pour toute la durée du séjour médical.</p>
+                </div>
+                <div class="asr-card">
+                    <div class="asr-card__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <h3>Transferts</h3>
+                    <p>Tous les trajets (aéroport, clinique, hôtel) organisés et financés par nos soins.</p>
+                </div>
+                <div class="asr-card">
+                    <div class="asr-card__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <h3>Soins médicaux</h3>
+                    <p>Couverts sous réserve d'une étude préalable du dossier par notre cabinet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Conditions #}
+    <section class="asr-conditions">
+        <div class="container">
+            <div class="asr-header reveal">
+                <span class="asr-label">CONDITIONS</span>
+                <h2 class="asr-title">Les règles à respecter pour maintenir la garantie</h2>
+            </div>
+            <div class="asr-steps reveal">
+                <div class="asr-step">
+                    <div class="asr-step__num">01</div>
+                    <div class="asr-step__body">
+                        <h3>Alimentation</h3>
+                        <p>Alimentation molle uniquement. Les aliments durs (biscuits, bonbons, fruits à coque) peuvent fragiliser les prothèses et annuler la garantie.</p>
+                    </div>
+                </div>
+                <div class="asr-step">
+                    <div class="asr-step__num">02</div>
+                    <div class="asr-step__body">
+                        <h3>Mouvements</h3>
+                        <p>Éviter tout mouvement susceptible de fragiliser les tissus dentaires et de compromettre la bonne intégration des implants.</p>
+                    </div>
+                </div>
+                <div class="asr-step">
+                    <div class="asr-step__num">03</div>
+                    <div class="asr-step__body">
+                        <h3>Hygiène</h3>
+                        <p>Hygiène bucco-dentaire irréprochable. Condition absolue pour la facturation de l'assurance et la préservation des implants provisoires.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Notes importantes #}
+    <section class="asr-notes">
+        <div class="container">
+            <div class="asr-note asr-note--warning reveal">
+                <div class="asr-note__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div>
+                    <h4>Prothèses provisoires en PMMA</h4>
+                    <p>Posées en fin de première pose. En cas de détérioration liée au non-respect des consignes, une seconde prothèse provisoire sera <strong>entièrement à la charge du patient</strong>. Nos prothèses sont en <strong>PMMA</strong>, matériau reconnu pour sa solidité.</p>
+                </div>
+            </div>
+            <div class="asr-note asr-note--info reveal">
+                <div class="asr-note__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                </div>
+                <div>
+                    <h4>Après expiration de la période de 1 an</h4>
+                    <p>Au-delà de cette période, en cas de complications, le patient prend à sa charge les frais d'hébergement, transferts et billet d'avion. Les soins ponctuels sont évalués au cas par cas par nos prestataires.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# CTA #}
+    <section class="asr-cta">
+        <div class="container">
+            <div class="asr-cta__inner reveal">
+                <h2>Notre réseau de cliniques partenaires</h2>
+                <p>Des cliniques sélectionnées pour leur excellence à Alger, Lyon et Paris pour assurer votre suivi.</p>
+                <a href="{{ path('app_contact') }}" class="btn btn--primary">Prendre rendez-vous</a>
+            </div>
         </div>
     </section>
 
