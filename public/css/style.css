@@ -1668,8 +1668,9 @@ ul {
 
 .footer__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
     gap: 40px;
+    align-items: start;
 }
 
 .footer__brand {
@@ -1687,9 +1688,10 @@ ul {
 
 .footer__desc {
     color: #94a3b8;
+    font-size: 0.875rem;
     line-height: 1.7;
-    margin-bottom: 20px;
-    text-align: center;
+    margin-top: 14px;
+    text-align: left;
 }
 
 .footer__social {

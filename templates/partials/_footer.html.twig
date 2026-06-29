@@ -10,6 +10,7 @@
                     <a href="{{ path('app_home') }}" class="footer__brand">
                         <img src="{{ asset('images/logo.png') }}" alt="Alliance Esthetic" class="footer__logo">
                     </a>
+                    <p class="footer__desc">Du Maghreb à la Turquie, nous révélons le meilleur de vous-même. Greffe capillaire & dentisterie esthétique.</p>
                 </div>
 
                 {# Colonne 2 : Liens rapides #}
@@ -23,7 +24,19 @@
                     </ul>
                 </div>
 
-                {# Colonne 3 : Contact #}
+                {# Colonne 3 : Nos services #}
+                <div class="footer__col footer__col--services">
+                    <h3 class="footer__title">Nos services</h3>
+                    <ul class="footer__links">
+                        <li><a href="{{ path('app_services') }}#capillaire">Greffe FUE</a></li>
+                        <li><a href="{{ path('app_services') }}#capillaire">Technique DHI</a></li>
+                        <li><a href="{{ path('app_services') }}#capillaire">Greffe de Barbe</a></li>
+                        <li><a href="{{ path('app_services') }}#dentaire">Facettes E.MAX</a></li>
+                        <li><a href="{{ path('app_services') }}#dentaire">Traitement par Gouttière</a></li>
+                    </ul>
+                </div>
+
+                {# Colonne 4 : Contact #}
                 <div class="footer__col footer__col--contact">
                     <h3 class="footer__title">Contactez-nous</h3>
                     <ul class="footer__contact">
