@@ -106,9 +106,9 @@
                     <div class="ba-slider" data-ba-slider>
                         <span class="ba-slider__tag ba-slider__tag--before">Avant</span>
                         <span class="ba-slider__tag ba-slider__tag--after">Après</span>
-                        <img class="ba-slider__after" src="https://images.unsplash.com/photo-1621607505426-5e3f1e1b253b?auto=format&fit=crop&w=800&q=80" alt="Après greffe barbe" loading="lazy">
+                        <img class="ba-slider__after" src="{{ asset('images/ba/greffe-barbe-apres.png') }}" alt="Après greffe de barbe" loading="lazy">
                         <div class="ba-slider__before">
-                            <img src="https://images.unsplash.com/photo-1596496050827-8299e0220de1?auto=format&fit=crop&w=800&q=80" alt="Avant greffe barbe" loading="lazy">
+                            <img src="{{ asset('images/ba/greffe-barbe-avant.png') }}" alt="Avant greffe de barbe" loading="lazy">
                         </div>
                         <div class="ba-slider__handle" aria-label="Glisser pour comparer">
                             <div class="ba-slider__line"></div>
@@ -153,9 +153,9 @@
                     <div class="ba-slider ba-slider--landscape" data-ba-slider>
                         <span class="ba-slider__tag ba-slider__tag--before">Avant</span>
                         <span class="ba-slider__tag ba-slider__tag--after">Après</span>
-                        <img class="ba-slider__after" src="{{ asset('images/ba/facettes-apres.jpeg') }}" alt="Après facettes" loading="lazy">
+                        <img class="ba-slider__after" src="{{ asset('images/ba/facettes-emax-apres.jpeg') }}" alt="Après Facettes E.MAX" loading="lazy">
                         <div class="ba-slider__before">
-                            <img src="{{ asset('images/ba/facettes-avant.jpeg') }}" alt="Avant facettes" loading="lazy">
+                            <img src="{{ asset('images/ba/facettes-emax-avant.jpeg') }}" alt="Avant Facettes E.MAX" loading="lazy">
                         </div>
                         <div class="ba-slider__handle" aria-label="Glisser pour comparer">
                             <div class="ba-slider__line"></div>
@@ -167,8 +167,8 @@
                     </div>
                 </div>
                 <div class="svc-row__content reveal reveal--right">
-                    <h3 class="svc-row__name">Facettes Dentaires</h3>
-                    <p class="svc-row__desc">De fines pellicules en céramique collées sur la face visible des dents. Idéales pour corriger la teinte, la forme ou l'alignement de votre sourire sans abîmer l'émail originel.</p>
+                    <h3 class="svc-row__name">Facettes E.MAX</h3>
+                    <p class="svc-row__desc">Les facettes E.MAX sont des coques ultra-fines en céramique pressée de haute qualité, collées sur la face visible des dents. La marque E.MAX est la référence mondiale en facettes : translucidité naturelle, solidité exceptionnelle et résultat bluffant de naturel.</p>
                     <ul class="svc-row__list">
                         <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Résultat immédiat et naturel</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Correction des défauts d'alignement</li>
@@ -215,17 +215,17 @@
         </div>
     </section>
 
-    {# Alignement Dentaire — slider gauche, texte droite #}
+    {# Traitement par Gouttière — slider gauche, texte droite #}
     <section class="svc-row svc-row--alt">
         <div class="container">
             <div class="svc-row__grid">
                 <div class="svc-row__media reveal reveal--left">
-                    <div class="ba-slider ba-slider--landscape" data-ba-slider>
+                    <div class="ba-slider" data-ba-slider>
                         <span class="ba-slider__tag ba-slider__tag--before">Avant</span>
                         <span class="ba-slider__tag ba-slider__tag--after">Après</span>
-                        <img class="ba-slider__after" src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=800&q=80" alt="Après alignement" loading="lazy">
+                        <img class="ba-slider__after" src="{{ asset('images/ba/gouttiere-apres.png') }}" alt="Après traitement par gouttière" loading="lazy">
                         <div class="ba-slider__before">
-                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80" alt="Avant alignement" loading="lazy">
+                            <img src="{{ asset('images/ba/gouttiere-avant.png') }}" alt="Avant traitement par gouttière" loading="lazy">
                         </div>
                         <div class="ba-slider__handle" aria-label="Glisser pour comparer">
                             <div class="ba-slider__line"></div>
@@ -237,7 +237,7 @@
                     </div>
                 </div>
                 <div class="svc-row__content reveal reveal--right">
-                    <h3 class="svc-row__name">Alignement Dentaire</h3>
+                    <h3 class="svc-row__name">Traitement par Gouttière</h3>
                     <p class="svc-row__desc">Des gouttières transparentes sur mesure pour corriger l'alignement de vos dents en toute discrétion. Une solution invisible, confortable et progressive.</p>
                     <ul class="svc-row__list">
                         <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Gouttières 100% invisibles</li>
